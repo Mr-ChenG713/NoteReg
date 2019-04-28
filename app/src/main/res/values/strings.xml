@@ -53,7 +53,7 @@
     <string name="title_activity_wind_ty">Types</string>
     <string name="title_activity_wind_serv">Services</string>
     <string name="title_activity_wind_graf">Graphics</string>
-    <string name="title_activity_wind_hist">Statistic</string>
+    <string name="title_activity_wind_hist">History</string>
     <string name="title_activity_ins_mov">Insert Movement</string>
     <string name="title_activity_ins_serv">Insert Sevice</string>
     <string name="title_activity_ins_ty">Insert Type</string>
