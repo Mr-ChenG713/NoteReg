@@ -8,4 +8,74 @@
     tools:context=".WindMov"
     tools:showIn="@layout/activity_wind_mov">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/MoveImgShow"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:background="@color/colorAccent"
+                android:contentDescription="@string/title_activity_wind_mov"
+                app:srcCompat="@drawable/ic_move_ic" />
+
+            <TextView
+                android:id="@+id/MoveTextShow"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_marginTop="20dp"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:text="@string/title_activity_wind_mov"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:fontFamily="casual" />
+
+            <Button
+                android:id="@+id/MovAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_style"
+                android:onClick="OpenInsert"
+                android:text="@string/Ins"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@drawable/txt_btn_style"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/Cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_style"
+                android:onClick="Cancel_Button"
+                android:text="@string/Cancel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@drawable/txt_btn_style"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
