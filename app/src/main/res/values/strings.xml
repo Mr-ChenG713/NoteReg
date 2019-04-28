@@ -1,4 +1,62 @@
 <resources>
     <string name="app_name">NoteReg</string>
     <string name="action_settings">Settings</string>
+
+    <string name="todo">TODO</string>
+
+    <string name="Ins">Insert</string>
+    <string name="Upd">Update</string>
+    <string name="Del">Delete</string>
+    <string name="Del_Edi">Update/Delete</string>
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
+    <string name="State_s_Inser">Successfully insert</string>
+    <string name="State_s_upda">Successfully update</string>
+    <string name="State_s_dele">Successfully delete</string>
+
+    <string name="WindMov_click_noti">Clicked Movements</string>
+    <string name="WindTip_click_noti">Clicked Types</string>
+    <string name="WindServ_click_noti">Clicked Services</string>
+    <string name="WindHist_click_noti">Clicked History</string>
+    <string name="WindGraf_click_noti">Clicked Graph</string>
+
+
+    <string name="Ins_RegMov_Dat">Date</string>
+    <string name="Ins_RegMov_Amo">Amount</string>
+    <string name="Ins_RegMov_Not">Note</string>
+    <string name="Ins_RegMov_opc">Optional</string>
+    <string name="Ins_RegMov_SpiT">Select Type</string>
+    <string name="Ins_RegMov_SpiS">Select Service</string>
+    <string name="Ins_RegMov_erro_amo">Insert Amount</string>
+
+    <string-array name="Type">
+        <item>Select Type</item>
+        <item>Gain</item>
+        <item>Expense</item>
+    </string-array>
+
+    <string-array name="Service">
+        <item>Select Service</item>
+        <item>Salary</item>
+        <item>Premium</item>
+        <item>Deposit</item>
+        <item>Food</item>
+        <item>Car</item>
+        <item>House</item>
+        <item>Shopping</item>
+        <item>Telecommunications</item>
+        <item>Entertainment</item>
+        <item>Health Care</item>
+        <item>Transport</item>
+    </string-array>
+    <string name="title_activity_wind_mov">Movements</string>
+    <string name="title_activity_wind_ty">Types</string>
+    <string name="title_activity_wind_serv">Services</string>
+    <string name="title_activity_wind_graf">Graphics</string>
+    <string name="title_activity_wind_hist">Statistic</string>
+    <string name="title_activity_ins_mov">Insert Movement</string>
+    <string name="title_activity_ins_serv">Insert Sevice</string>
+    <string name="title_activity_ins_ty">Insert Type</string>
+
+
 </resources>

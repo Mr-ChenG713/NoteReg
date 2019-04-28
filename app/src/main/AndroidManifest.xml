@@ -10,6 +10,78 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".InsTy"
+            android:label="@string/title_activity_ins_ty"
+            android:parentActivityName=".WindTy"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.WindTy" />
+        </activity>
+        <activity
+            android:name=".InsServ"
+            android:label="@string/title_activity_ins_serv"
+            android:parentActivityName=".WindServ"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.WindServ" />
+        </activity>
+        <activity
+            android:name=".InsMov"
+            android:label="@string/title_activity_ins_mov"
+            android:parentActivityName=".WindMov"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.WindMov" />
+        </activity>
+        <activity
+            android:name=".WindHist"
+            android:label="@string/title_activity_wind_hist"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.MainActivity" />
+        </activity>
+        <activity
+            android:name=".WindGraf"
+            android:label="@string/title_activity_wind_graf"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.MainActivity" />
+        </activity>
+        <activity
+            android:name=".WindServ"
+            android:label="@string/title_activity_wind_serv"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.MainActivity" />
+        </activity>
+        <activity
+            android:name=".WindTy"
+            android:label="@string/title_activity_wind_ty"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.MainActivity" />
+        </activity>
+        <activity
+            android:name=".WindMov"
+            android:label="@string/title_activity_wind_mov"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.MainActivity" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
