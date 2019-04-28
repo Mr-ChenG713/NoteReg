@@ -15,6 +15,3 @@ Para a base de dados serão utilizado as seguintes tabelas:
  
  A tabela de tipo premite selecionar se o registo for uma despesa ou um gasto ,a tabela de serviço premite saber onde se foi gastando e ganhando.
 As chaves primárias das duas tabelas anteriores vão servir como dois atributos para a tabela de registo.
-
-![alt text](https:https://github.com/Mr-ChenG713/NoteReg/blob/master/Capturar.PNG)
-
