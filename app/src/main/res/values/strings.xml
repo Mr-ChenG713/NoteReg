@@ -58,5 +58,11 @@
     <string name="title_activity_ins_serv">Insert Sevice</string>
     <string name="title_activity_ins_ty">Insert Type</string>
 
+    <string name="title_activity_updt_mov">Update Movement</string>
+    <string name="title_activity_delt_mov">Delete Movement</string>
+
+    <string name="Show_Mov_t">Type</string>
+    <string name="Show_Mov_s">Service</string>
+
 
 </resources>

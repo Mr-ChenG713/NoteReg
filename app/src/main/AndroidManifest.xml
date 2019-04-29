@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".DeltMov"
+            android:label="@string/title_activity_delt_mov"
+            android:parentActivityName=".WindGraf"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.WindGraf" />
+        </activity>
+        <activity
+            android:name=".UpdtMov"
+            android:label="@string/title_activity_updt_mov"
+            android:parentActivityName=".WindHist"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chengbo.notereg.WindHist" />
+        </activity>
+        <activity
             android:name=".InsTy"
             android:label="@string/title_activity_ins_ty"
             android:parentActivityName=".WindTy"
