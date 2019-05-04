@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                         Intent intentMov = new Intent(MainActivity.this, WindMov.class);
                         Toast.makeText(MainActivity.this, (R.string.WindMov_click_noti), Toast.LENGTH_SHORT).show();
                         startActivity(intentMov);
-
                         break;
                     case 2:
                         Intent intentTip = new Intent(MainActivity.this, WindTy.class);
