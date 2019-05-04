@@ -31,11 +31,10 @@ public class WindTy extends AppCompatActivity {
     }
 
     public  void  EDTp (View view){
-        // Intent intent = new Intent(this, EditTyp.class);
 
-        //Toast.makeText(this,(R.string.WindTypes_RegTypes_noti_edi), Toast.LENGTH_SHORT).show();
-
-        //startActivity(intent);
+        Intent intent = new Intent(this, DelAndUpTy.class);
+        Toast.makeText(this,(R.string.title_activity_del_and_up_ty), Toast.LENGTH_SHORT).show();
+        startActivity(intent);
     }
 
 

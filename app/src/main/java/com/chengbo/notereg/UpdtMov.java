@@ -118,12 +118,16 @@ public class UpdtMov extends AppCompatActivity {
             Toast.makeText(this, (R.string.Ins_RegMov_SpiS), Toast.LENGTH_SHORT).show();
             return;
 
-        } else if (message.trim().length() == 0){
+        }
 
+        double valor = 0;
+
+        try {
+            valor = Double.parseDouble(editTextAmoun.getText().toString());
+        } catch (NumberFormatException e) {
             editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amo));
             editTextAmoun.requestFocus();
             return;
-
         }
 
         Toast.makeText(this,(R.string.State_s_upda), Toast.LENGTH_SHORT).show();

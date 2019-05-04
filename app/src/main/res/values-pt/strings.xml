@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NoteReg</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Del">Eliminar</string>
+    <string name="Del_Edi">Editar or Eliminar</string>
+    <string name="Ins">Inserir</string>
+    <string name="Ins_RegMov_Amo">Montante</string>
+    <string name="Ins_RegMov_Dat">Data</string>
+    <string name="Ins_RegMov_Not">Nota</string>
+    <string name="Ins_RegMov_SpiS">Seleciona Serviço</string>
+    <string name="Ins_RegMov_SpiT">Seleciona Tipo</string>
+    <string name="Ins_RegMov_erro_amo">Inserir Montante</string>
+    <string name="Ins_RegMov_opc">Opcional</string>
+    <string name="Save">Guadar</string>
+    <string name="Show_Mov_s">Serviço</string>
+    <string name="Show_Mov_t">Tipo</string>
+    <string name="State_s_Inser">Inserir com Sucesso</string>
+    <string name="State_s_dele">Eliminar com Sucesso</string>
+    <string name="State_s_upda">Editar com Sucesso</string>
+    <string name="Upd">Editar</string>
+    <string name="WindGraf_click_noti">Gráfico Clicados</string>
+    <string name="WindHist_click_noti">Historia Clicados</string>
+    <string name="WindMov_click_noti">Movimento Clicados</string>
+    <string name="WindServ_click_noti">Serviços Clicados</string>
+    <string name="WindTip_click_noti">Tipos Clicados</string>
+    <string name="action_settings">Configurações</string>
+    <string name="title_activity_delt_mov">Eliminar Movimento</string>
+    <string name="title_activity_ins_mov">Inserir Movimento</string>
+    <string name="title_activity_ins_serv">Inserir Serviço</string>
+    <string name="title_activity_ins_ty">Inserir Tipo</string>
+    <string name="title_activity_updt_mov">Editar Movimento</string>
+    <string name="title_activity_wind_graf">Graficos</string>
+    <string name="title_activity_wind_hist">Historias</string>
+    <string name="title_activity_wind_mov">Movimentos</string>
+    <string name="title_activity_wind_serv">Serviços</string>
+    <string name="title_activity_wind_ty">Tipos</string>
+
+    <string-array name="Type">
+        <item>Seleciona Tipo</item>
+        <item>Ganho</item>
+        <item>Despesa</item>
+    </string-array>
+
+    <string-array name="Service">
+        <item>Seleciona Serviço</item>
+        <item>Salario</item>
+        <item>Premio</item>
+        <item>Deposito</item>
+        <item>Alimentação</item>
+        <item>Carro</item>
+        <item>Casa</item>
+        <item>Compras</item>
+        <item>Telecomunicações</item>
+        <item>Entertenimento</item>
+        <item>Saúde</item>
+        <item>Transporte</item>
+    </string-array>
+    <string name="title_activity_del_and_up_serv">Eliminar ou Editar Serviço</string>
+    <string name="title_activity_del_and_up_ty">Eliminar ou Editar Tipo</string>
+    <string name="Ins_RegMov_erro_amoUP0">Inserir um valor maior do que 0</string>
+</resources>

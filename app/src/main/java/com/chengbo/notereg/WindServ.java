@@ -31,11 +31,11 @@ public class WindServ extends AppCompatActivity {
     }
 
     public  void  EDSev (View view){
-        // Intent intent = new Intent(this, EditTyp.class);
 
-        //Toast.makeText(this,(R.string.WindTypes_RegTypes_noti_edi), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,DelAndUpServ.class);
+        Toast.makeText(this,(R.string.title_activity_del_and_up_serv), Toast.LENGTH_SHORT).show();
+        startActivity(intent);
 
-        //startActivity(intent);
     }
 
 

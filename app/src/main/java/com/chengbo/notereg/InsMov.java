@@ -106,24 +106,34 @@ public class InsMov extends AppCompatActivity {
 
         if (selectedItemId == 0){
 
-            spinnerTip.requestFocus();
             ((TextView) spinnerTip.getSelectedView()).setError("?");
             Toast.makeText(this, (R.string.Ins_RegMov_SpiT), Toast.LENGTH_SHORT).show();
+            spinnerTip.requestFocus();
             return;
 
         }else  if (selectedItemId2 == 0){
 
-            spinnerServ.requestFocus();
             ((TextView) spinnerServ.getSelectedView()).setError("?");
             Toast.makeText(this, (R.string.Ins_RegMov_SpiS), Toast.LENGTH_SHORT).show();
+            spinnerServ.requestFocus();
             return;
 
-        } else if (message.trim().length() == 0){
+        }
 
+        double valor = 0;
+
+        try {
+            valor = Double.parseDouble(editTextAmoun.getText().toString());
+        } catch (NumberFormatException e) {
             editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amo));
             editTextAmoun.requestFocus();
             return;
+        }
 
+        if (valor == 0) {
+            editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amoUP0));
+            editTextAmoun.requestFocus();
+            return;
         }
 
         Toast.makeText(this,(R.string.State_s_Inser), Toast.LENGTH_SHORT).show();

@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">NoteReg</string>
+    <string name="app_name" translatable="false">NoteReg</string>
     <string name="action_settings">Settings</string>
 
-    <string name="todo">TODO</string>
+    <string name="todo" translatable="false">TODO</string>
 
     <string name="Ins">Insert</string>
     <string name="Upd">Update</string>
     <string name="Del">Delete</string>
-    <string name="Del_Edi">Update/Delete</string>
+    <string name="Del_Edi">Update or Delete</string>
     <string name="Save">Save</string>
     <string name="Cancel">Cancel</string>
     <string name="State_s_Inser">Successfully insert</string>
@@ -28,6 +28,7 @@
     <string name="Ins_RegMov_SpiT">Select Type</string>
     <string name="Ins_RegMov_SpiS">Select Service</string>
     <string name="Ins_RegMov_erro_amo">Insert Amount</string>
+    <string name="Ins_RegMov_erro_amoUP0">Enter a value greater than 0</string>
 
     <string-array name="Type">
         <item>Select Type</item>
@@ -49,6 +50,7 @@
         <item>Health Care</item>
         <item>Transport</item>
     </string-array>
+
     <string name="title_activity_wind_mov">Movements</string>
     <string name="title_activity_wind_ty">Types</string>
     <string name="title_activity_wind_serv">Services</string>
@@ -61,8 +63,10 @@
     <string name="title_activity_updt_mov">Update Movement</string>
     <string name="title_activity_delt_mov">Delete Movement</string>
 
-    <string name="Show_Mov_t">Type</string>
     <string name="Show_Mov_s">Service</string>
+    <string name="title_activity_del_and_up_serv">Delete or Update Service</string>
+    <string name="Show_Mov_t">Type</string>
+    <string name="title_activity_del_and_up_ty">Delete or Update Type</string>
 
 
 </resources>

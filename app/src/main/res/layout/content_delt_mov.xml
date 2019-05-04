@@ -20,7 +20,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp">
+                android:layout_margin="@dimen/margin_default">
 
                 <TextView
                     android:id="@+id/ShowTip"
@@ -35,7 +35,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp">
+                android:layout_margin="@dimen/margin_default">
 
                 <TextView
                     android:id="@+id/ShowSer"
@@ -50,7 +50,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp">
+                android:layout_margin="@dimen/margin_default">
 
                 <TextView
                     android:id="@+id/ShowData"
@@ -65,7 +65,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp">
+                android:layout_margin="@dimen/margin_default">
 
                 <TextView
                     android:id="@+id/ShsowAmo"
@@ -80,7 +80,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp">
+                android:layout_margin="@dimen/margin_default">
 
                 <TextView
                     android:id="@+id/ShowNot"
@@ -95,7 +95,7 @@
                 android:id="@+id/button9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/margin_default"
                 android:background="@drawable/btn_style"
                 android:onClick="Delete_Button"
                 android:text="@string/Del"
@@ -106,7 +106,7 @@
                 android:id="@+id/button13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/margin_default"
                 android:background="@drawable/btn_style"
                 android:onClick="Cancel_Button"
                 android:text="@string/Cancel"
