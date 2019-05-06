@@ -44,7 +44,6 @@
                 android:background="@drawable/btn_style"
                 android:onClick="UpMov"
                 android:text="@string/Upd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@drawable/txt_btn_style"
                 android:textSize="30sp"
                 android:textStyle="bold" />

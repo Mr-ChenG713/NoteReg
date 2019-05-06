@@ -59,4 +59,6 @@
     <string name="title_activity_del_and_up_serv">Eliminar ou Editar Serviço</string>
     <string name="title_activity_del_and_up_ty">Eliminar ou Editar Tipo</string>
     <string name="Ins_RegMov_erro_amoUP0">Inserir um valor maior do que 0</string>
+    <string name="title_activity_edit_serv">Editar Serviço</string>
+    <string name="title_activity_edit_ty">Editar Tipo</string>
 </resources>

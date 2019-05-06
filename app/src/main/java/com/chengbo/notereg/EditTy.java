@@ -1,6 +1,5 @@
 package com.chengbo.notereg;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,30 +9,36 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class DelAndUpTy extends AppCompatActivity {
+public class EditTy extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_del_and_up_ty);
+        setContentView(R.layout.activity_edit_ty);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }
 
-    public void Up_Button (View view){
+    public void Up_Button(View view) {
 
-        Intent intent = new Intent(this, EditTy.class);
-        Toast.makeText(this, (R.string.title_activity_edit_ty), Toast.LENGTH_SHORT).show();
-        startActivity(intent);
+        EditText editTextServ = (EditText) findViewById(R.id.InsTy);
 
-    }
+        String message = editTextServ.getText().toString();
 
-    public void Del_Button (View view){
+        if (message.trim().length() == 0){
 
-        Toast.makeText(this, (R.string.State_s_dele), Toast.LENGTH_SHORT).show();
+            editTextServ.setError(getString(R.string.title_activity_ins_ty));
+            editTextServ.requestFocus();
+            return;
+
+        }
+
+        Toast.makeText(this,(R.string.State_s_upda), Toast.LENGTH_SHORT).show();
+
         finish();
     }
 

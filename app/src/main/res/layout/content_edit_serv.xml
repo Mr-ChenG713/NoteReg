@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".DelAndUpTy"
-    tools:showIn="@layout/activity_del_and_up_ty">
+    tools:context=".EditServ"
+    tools:showIn="@layout/activity_edit_serv">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,45 +17,41 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <ListView
-                android:id="@+id/ListTy"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_default"
-                android:choiceMode="singleChoice" />
+                android:layout_margin="@dimen/margin_default">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/InsServ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/title_activity_ins_serv" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/button20"
+                android:id="@+id/button16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                android:background="@drawable/btn_style"
                 android:onClick="Up_Button"
                 android:text="@string/Upd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style" />
+                android:textColor="@drawable/txt_btn_style"
+                android:background="@drawable/btn_style"/>
 
             <Button
-                android:id="@+id/button21"
+                android:id="@+id/button23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                android:background="@drawable/btn_style"
-                android:onClick="Del_Button"
-                android:text="@string/Del"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style" />
-
-            <Button
-                android:id="@+id/button22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:background="@drawable/btn_style"
                 android:onClick="Cancel_Button"
                 android:text="@string/Cancel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style" />
+                android:textColor="@drawable/txt_btn_style"
+                android:background="@drawable/btn_style"/>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

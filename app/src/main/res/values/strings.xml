@@ -67,6 +67,8 @@
     <string name="title_activity_del_and_up_serv">Delete or Update Service</string>
     <string name="Show_Mov_t">Type</string>
     <string name="title_activity_del_and_up_ty">Delete or Update Type</string>
+    <string name="title_activity_edit_serv">Update Sevice</string>
+    <string name="title_activity_edit_ty">Update Type</string>
 
 
 </resources>
