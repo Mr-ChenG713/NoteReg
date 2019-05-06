@@ -1,29 +1,50 @@
 package com.chengbo.notereg;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
 public class Servico {
 
-    private int idS;
-    private String Tipo_servico;
+    private long id;
+    private String nome;
 
-
-    public Servico(int idS, String tipo_servico) {
-        this.idS = idS;
-        Tipo_servico = tipo_servico;
+    public long getId() {
+        return id;
     }
 
-    public String getTipo_servico() {
-        return Tipo_servico;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setTipo_servico(String tipo_servico) {
-        Tipo_servico = tipo_servico;
+    public String getNome() {
+        return nome;
     }
 
-    public int getIdS() {
-        return idS;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setIdS(int idS) {
-        this.idS = idS;
+    public ContentValues getContentValues() {
+        ContentValues valores = new ContentValues();
+
+        valores.put(BdTabelaServicos.CAMPO_NOME, nome);
+
+        return valores;
     }
+
+    public static Servico fromCursor (Cursor cursor){
+
+        Servico servico = new Servico();
+
+        long id = cursor.getLong(cursor.getColumnIndex(BdTabelaServicos._ID));
+
+        String nome = cursor.getString(cursor.getColumnIndex(BdTabelaServicos.CAMPO_NOME));
+
+        servico.setId(id);
+        servico.setNome(nome);
+
+        return servico;
+
+    }
+
 }

@@ -1,29 +1,48 @@
 package com.chengbo.notereg;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
 public class Tipo {
 
-    private int idT;
-    private String genero;
+    private long id;
+    private String nome;
 
-
-    public Tipo(int idT, String genero) {
-        this.idT = idT;
-        this.genero = genero;
+    public long getId() {
+        return id;
     }
 
-    public String getGenero() {
-        return genero;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public String getNome() {
+        return nome;
     }
 
-    public int getIdT() {
-        return idT;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setIdT(int idT) {
-        this.idT = idT;
+    public ContentValues getContenteValues(){
+
+        ContentValues valores =  new ContentValues();
+
+        valores.put(BdTabelaTipos.CAMPO_NOME, nome);
+
+        return valores;
+    }
+
+    public static Tipo fromCursor (Cursor cursor){
+        Tipo tipo = new Tipo();
+
+        long id = cursor.getLong(cursor.getColumnIndex(BdTabelaTipos._ID));
+
+        String nome = cursor.getString(cursor.getColumnIndex(BdTabelaTipos.CAMPO_NOME));
+
+        tipo.setId(id);
+        tipo.setNome(nome);
+
+        return tipo;
     }
 }
