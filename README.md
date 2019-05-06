@@ -18,3 +18,4 @@ As chaves primárias das duas tabelas anteriores vão servir como dois atributos
 
 
 ![alt text](https://github.com/Mr-ChenG713/NoteReg/blob/master/Capturar.PNG)
+
