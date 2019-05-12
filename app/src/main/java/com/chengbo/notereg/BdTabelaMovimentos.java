@@ -24,14 +24,14 @@ public class BdTabelaMovimentos implements BaseColumns {
     public void cria(){
         db.execSQL(
                 "CREATE TABLE " + NOME_TABELA + "(" +
-                        _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        CAMPO_MONTANTE + " INTEGER NOT NULL," +
-                        CAMPO_DATA + " TEXT NOT NULL," +
-                        CAMPO_DESCRICAO + " TEXT," +
-                        CAMPO_TIPO + " INTEGER NOT NULL," +
-                        "FOREIGN KEY (" + CAMPO_TIPO + ") REFERENCES" + BdTabelaTipos.NOME_TABELA + "(" + BdTabelaTipos._ID + ")," +
-                        CAMPO_SERVICO + " INTEGER NOT NULL," +
-                        "FOREIGN KEY (" + CAMPO_SERVICO + ") REFERENCES" + BdTabelaServicos.NOME_TABELA + "(" + BdTabelaServicos._ID + ")" +
+                        _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        CAMPO_MONTANTE + " INTEGER NOT NULL, " +
+                        CAMPO_DATA + " TEXT NOT NULL, " +
+                        CAMPO_DESCRICAO + " TEXT, " +
+                        CAMPO_TIPO + " INTEGER NOT NULL, " +
+                        CAMPO_SERVICO + " INTEGER NOT NULL, " +
+                        "FOREIGN KEY (" + CAMPO_TIPO + ") REFERENCES " + BdTabelaTipos.NOME_TABELA + " ( " + BdTabelaTipos._ID + " ), " +
+                        "FOREIGN KEY (" + CAMPO_SERVICO + ") REFERENCES " + BdTabelaServicos.NOME_TABELA + " ( " + BdTabelaServicos._ID + " ) " +
                         ")"
         );
     }
@@ -41,10 +41,12 @@ public class BdTabelaMovimentos implements BaseColumns {
     }
 
     public long insert (ContentValues values){
+
         return db.insert(NOME_TABELA, null, values);
     }
 
     public int update (ContentValues values, String whereClause, String[] whereArgs){
+
         return db.update(NOME_TABELA, values, whereClause, whereArgs);
     }
 
