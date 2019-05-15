@@ -14,6 +14,8 @@ public class BdTabelaMovimentos implements BaseColumns {
     public static final String CAMPO_TIPO = "tipo";
     public static final String CAMPO_SERVICO = "servico";
 
+    public static final String[] TODAS_COLUNAS_MOVIMENTOS = new String[] {_ID, CAMPO_TIPO, CAMPO_SERVICO,CAMPO_DATA, CAMPO_MONTANTE,CAMPO_DESCRICAO};
+
 
     private SQLiteDatabase db;
 
@@ -25,7 +27,7 @@ public class BdTabelaMovimentos implements BaseColumns {
         db.execSQL(
                 "CREATE TABLE " + NOME_TABELA + "(" +
                         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        CAMPO_MONTANTE + " INTEGER NOT NULL, " +
+                        CAMPO_MONTANTE + " FLOAT NOT NULL, " +
                         CAMPO_DATA + " TEXT NOT NULL, " +
                         CAMPO_DESCRICAO + " TEXT, " +
                         CAMPO_TIPO + " INTEGER NOT NULL, " +

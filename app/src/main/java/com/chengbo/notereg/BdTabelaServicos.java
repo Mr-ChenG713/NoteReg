@@ -9,6 +9,7 @@ public class BdTabelaServicos implements BaseColumns {
 
     public static final String NOME_TABELA = "Servicos";
     public static final String CAMPO_NOME = "nome";
+    public static final String[] TODAS_COLUNAS_SERVICOS = new String[] {_ID, CAMPO_NOME};
 
 
     private SQLiteDatabase db;
