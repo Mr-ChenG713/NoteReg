@@ -27,7 +27,7 @@ public class BdTabelaMovimentos implements BaseColumns {
         db.execSQL(
                 "CREATE TABLE " + NOME_TABELA + "(" +
                         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        CAMPO_MONTANTE + " FLOAT NOT NULL, " +
+                        CAMPO_MONTANTE + " DOUBLE NOT NULL, " +
                         CAMPO_DATA + " TEXT NOT NULL, " +
                         CAMPO_DESCRICAO + " TEXT, " +
                         CAMPO_TIPO + " INTEGER NOT NULL, " +

@@ -163,6 +163,79 @@ public class BdMovimentosTest {
         getServicoComID(cursorServicos, idAlimentacao);
         getServicoComID(cursorServicos, idSalario);
 
+        /*******************************
+         * Operações da Tabela Movimentos *
+         *******************************/
+
+        BdTabelaMovimentos tabelaMovimentos = new BdTabelaMovimentos(db);
+
+        //Teste Read movimentos
+        Cursor cursorMovimentos = getMovimentos(tabelaMovimentos);
+        assertEquals(0, cursorMovimentos.getCount());
+
+        //Teste create/read movimento
+        String data = "15/05/2019";
+        double montante = 5.00;
+        String descricao = " @ ";
+
+        id = criaMovimento(tabelaMovimentos, data, montante, descricao, idGanho, idAlimentacao);
+        cursorMovimentos = getMovimentos(tabelaMovimentos);
+        assertEquals(1, cursorMovimentos.getCount());
+
+        Movimento movimento = getMovimentoComID(cursorMovimentos, id);
+        assertEquals(data, movimento.getData());
+        assertEquals(montante, movimento.getMontante());
+        assertEquals(descricao, movimento.getDescricao());
+        assertEquals(idGanho, movimento.getTipos());
+        assertEquals(idAlimentacao, movimento.getServicos());
+
+        data = "19/05/2019";
+        montante = 10.98;
+        descricao = " @@@@ ";
+        id = criaMovimento(tabelaMovimentos, data, montante, descricao, idDespesa, idSalario);
+        cursorMovimentos = getMovimentos(tabelaMovimentos);
+        assertEquals(2, cursorMovimentos.getCount());
+
+        movimento = getMovimentoComID(cursorMovimentos, id);
+        assertEquals(data, movimento.getData());
+        assertEquals(montante, movimento.getMontante());
+        assertEquals(descricao, movimento.getDescricao());
+        assertEquals(idDespesa, movimento.getTipos());
+        assertEquals(idSalario, movimento.getServicos());
+
+        id = criaMovimento(tabelaMovimentos, "20/05/2019", 80.30, "@123", idGanho, idSalario);
+        cursorMovimentos = getMovimentos(tabelaMovimentos);
+        assertEquals(3, cursorMovimentos.getCount());
+
+        //Teste read/Update movimentos
+        movimento = getMovimentoComID(cursorMovimentos, id);
+        data = "23/06/2020";
+        montante = 160.81;
+        descricao = "@123456678";
+
+        movimento.setData(data);
+        movimento.setMontante(montante);
+        movimento.setDescricao(descricao);
+        movimento.setTipos(idDespesa);
+        movimento.setServicos(idSalario);
+
+        tabelaMovimentos.update(movimento.getContentValues(), BdTabelaMovimentos._ID + "=?", new String[] {String.valueOf(id)});
+
+
+        cursorMovimentos = getMovimentos(tabelaMovimentos);
+
+        movimento = getMovimentoComID(cursorMovimentos, id);
+        assertEquals(data, movimento.getData());
+        assertEquals(montante, movimento.getMontante());
+        assertEquals(descricao, movimento.getDescricao());
+        assertEquals(idDespesa, movimento.getTipos());
+        assertEquals(idSalario, movimento.getServicos());
+
+        //Teste read/delete Movimentos
+        tabelaMovimentos.delete(BdTabelaMovimentos._ID + "=?", new String[] {String.valueOf(id)});
+        cursorMovimentos = getMovimentos(tabelaMovimentos);
+        assertEquals(2, cursorMovimentos.getCount());
+
     }
 
     //Tabela tipos
@@ -234,7 +307,7 @@ public class BdMovimentosTest {
     }
 
     //Tabela Movimentos
-    private long criaMovimento(BdTabelaMovimentos tabelaMovimentos, String data, float montante, String descricao, long tipos, long servicos) {
+    private long criaMovimento(BdTabelaMovimentos tabelaMovimentos, String data, double montante, String descricao, long tipos, long servicos) {
         Movimento movimento = new Movimento();
 
         movimento.setData(data);

@@ -6,7 +6,7 @@ import android.database.Cursor;
 public class Movimento {
 
     private long id;
-    private float montante;
+    private double montante;
     private String  data;
     private String descricao;
     private long tipos; //chave estrangeira
@@ -20,11 +20,11 @@ public class Movimento {
         this.id = id;
     }
 
-    public float getMontante() {
+    public double getMontante() {
         return montante;
     }
 
-    public void setMontante(float montante) {
+    public void setMontante(double montante) {
         this.montante = montante;
     }
 
