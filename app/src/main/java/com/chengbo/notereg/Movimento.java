@@ -76,7 +76,7 @@ public class Movimento {
 
         long id = cursor.getLong(cursor.getColumnIndex(BdTabelaMovimentos._ID));
 
-        float montante  = cursor.getFloat(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_MONTANTE));
+        double montante  = cursor.getDouble(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_MONTANTE));
 
         String data  = cursor.getString(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_DATA));
 

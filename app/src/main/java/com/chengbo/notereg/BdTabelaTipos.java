@@ -9,6 +9,7 @@ public class BdTabelaTipos implements BaseColumns {
 
     public static final String NOME_TABELA = "tipos";
     public static final String CAMPO_NOME = "nome";
+
     public static  final  String[] TODAS_COLUNAS_TIPOS = new String[] {_ID, CAMPO_NOME};
 
 

@@ -97,6 +97,8 @@ public class InsMov extends AppCompatActivity {
 
     public void Save_Button(View view) {
 
+        double valor = 0;
+
         EditText editTextAmoun = (EditText) findViewById(R.id.InserAmt);
 
         String message = editTextAmoun.getText().toString();
@@ -118,23 +120,23 @@ public class InsMov extends AppCompatActivity {
             spinnerServ.requestFocus();
             return;
 
+        } else if (message.trim().length() == 0){
+            editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amo));
+            editTextAmoun.requestFocus();
+            return;
+        } else  if (valor == 0) {
+            editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amoUP0));
+            editTextAmoun.requestFocus();
+            return;
         }
 
-        double valor = 0;
-
-        try {
+         /*try {
             valor = Double.parseDouble(editTextAmoun.getText().toString());
         } catch (NumberFormatException e) {
             editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amo));
             editTextAmoun.requestFocus();
             return;
-        }
-
-        if (valor == 0) {
-            editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amoUP0));
-            editTextAmoun.requestFocus();
-            return;
-        }
+        }*/
 
         Toast.makeText(this,(R.string.State_s_Inser), Toast.LENGTH_SHORT).show();
 

@@ -151,7 +151,7 @@ public class BdMovimentosTest {
 
         assertEquals(nome_servico, servico.getNome());
 
-        //Teste Create/delete/read tipo
+        //Teste Create/delete/read servico
         id = criaServico(tabelaServicos, "TESTE");
         cursorServicos = getServicos(tabelaServicos);
         assertEquals(3, cursorServicos.getCount());
@@ -184,7 +184,7 @@ public class BdMovimentosTest {
 
         Movimento movimento = getMovimentoComID(cursorMovimentos, id);
         assertEquals(data, movimento.getData());
-        assertEquals(montante, movimento.getMontante());
+        assertEquals(montante, movimento.getMontante(),0.001);
         assertEquals(descricao, movimento.getDescricao());
         assertEquals(idGanho, movimento.getTipos());
         assertEquals(idAlimentacao, movimento.getServicos());
@@ -198,7 +198,7 @@ public class BdMovimentosTest {
 
         movimento = getMovimentoComID(cursorMovimentos, id);
         assertEquals(data, movimento.getData());
-        assertEquals(montante, movimento.getMontante());
+        assertEquals(montante, movimento.getMontante(), 0.001);
         assertEquals(descricao, movimento.getDescricao());
         assertEquals(idDespesa, movimento.getTipos());
         assertEquals(idSalario, movimento.getServicos());
@@ -226,7 +226,7 @@ public class BdMovimentosTest {
 
         movimento = getMovimentoComID(cursorMovimentos, id);
         assertEquals(data, movimento.getData());
-        assertEquals(montante, movimento.getMontante());
+        assertEquals(montante, movimento.getMontante(), 0.001);
         assertEquals(descricao, movimento.getDescricao());
         assertEquals(idDespesa, movimento.getTipos());
         assertEquals(idSalario, movimento.getServicos());
@@ -240,6 +240,7 @@ public class BdMovimentosTest {
 
     //Tabela tipos
     private long criaTipo(BdTabelaTipos tabelaTipos, String nome_tipo) {
+
 
         Tipo tipo = new Tipo();
         tipo.setNome(nome_tipo);
