@@ -27,12 +27,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <ListView
-                android:id="@+id/ListMov"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_default"
-                android:choiceMode="singleChoice" />
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMovimentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
 
             <Button
                 android:id="@+id/button10"

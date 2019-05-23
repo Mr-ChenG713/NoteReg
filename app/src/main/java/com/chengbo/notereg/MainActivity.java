@@ -1,6 +1,7 @@
 package com.chengbo.notereg;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -10,15 +11,28 @@ import com.hitomi.cmlibrary.CircleMenu;
 import com.hitomi.cmlibrary.OnMenuSelectedListener;
 import com.hitomi.cmlibrary.OnMenuStatusChangeListener;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CursorAdapter;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    private static final int ID_CURSO_LOADER_MOVIMENTOS = 0;
+
+    private RecyclerView recyclerViewMovimentos;
+    private AdaptadorMovimentos adaptadorMovimentos;
 
     int selectedindex;
 
@@ -28,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportLoaderManager().initLoader(ID_CURSO_LOADER_MOVIMENTOS, null, this);
+
+        recyclerViewMovimentos = (RecyclerView) findViewById(R.id.recyclerViewMovimentos);
+        adaptadorMovimentos = new AdaptadorMovimentos(this);
+        recyclerViewMovimentos.setAdapter(adaptadorMovimentos);
+        recyclerViewMovimentos.setLayoutManager(new LinearLayoutManager(this));
+
 
         CircleMenu circleMenu = findViewById(R.id.circlemenu);
 
@@ -103,6 +125,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+
+        getSupportLoaderManager().restartLoader(ID_CURSO_LOADER_MOVIMENTOS, null, this);
+
+        super.onResume();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,5 +154,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+
+        CursorLoader cursorLoader = new CursorLoader(this, NoteRegContentProvider.ENDERECO_MOVIMENTOS, BdTabelaMovimentos.TODAS_COLUNAS_MOVIMENTOS, null, null, BdTabelaMovimentos.CAMPO_TIPO);
+
+
+        return cursorLoader;
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
+        adaptadorMovimentos.setCursor(data);
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
     }
 }
