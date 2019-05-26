@@ -27,12 +27,7 @@ import android.view.MenuItem;
 import android.widget.CursorAdapter;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-
-    private static final int ID_CURSO_LOADER_MOVIMENTOS = 0;
-
-    private RecyclerView recyclerViewMovimentos;
-    private AdaptadorMovimentos adaptadorMovimentos;
+public class MainActivity extends AppCompatActivity {
 
     int selectedindex;
 
@@ -42,14 +37,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        getSupportLoaderManager().initLoader(ID_CURSO_LOADER_MOVIMENTOS, null, this);
-
-        recyclerViewMovimentos = (RecyclerView) findViewById(R.id.recyclerViewMovimentos);
-        adaptadorMovimentos = new AdaptadorMovimentos(this);
-        recyclerViewMovimentos.setAdapter(adaptadorMovimentos);
-        recyclerViewMovimentos.setLayoutManager(new LinearLayoutManager(this));
-
 
         CircleMenu circleMenu = findViewById(R.id.circlemenu);
 
@@ -126,15 +113,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    protected void onResume(){
-
-        getSupportLoaderManager().restartLoader(ID_CURSO_LOADER_MOVIMENTOS, null, this);
-
-        super.onResume();
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -154,27 +132,5 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @NonNull
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-
-        CursorLoader cursorLoader = new CursorLoader(this, NoteRegContentProvider.ENDERECO_MOVIMENTOS, BdTabelaMovimentos.TODAS_COLUNAS_MOVIMENTOS, null, null, BdTabelaMovimentos.CAMPO_TIPO);
-
-
-        return cursorLoader;
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-
-        adaptadorMovimentos.setCursor(data);
-
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-
     }
 }
