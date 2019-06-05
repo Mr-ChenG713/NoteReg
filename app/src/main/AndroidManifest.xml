@@ -147,9 +147,10 @@
         </activity>
 
         <provider
-            android:authorities="com.chengbo.notereg"
             android:name=".NoteRegContentProvider"
-            android:exported="false" />
+            android:authorities="com.chengbo.notereg"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

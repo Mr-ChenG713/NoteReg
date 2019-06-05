@@ -6,10 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class BdMovimentosOpenHelper extends SQLiteOpenHelper {
+public class BdNoteRegOpenHelper extends SQLiteOpenHelper {
 
-
-    public static final String NOME_BASE_DADOS = "Movimentos.db";
+    public static final String NOME_BASE_DADOS = "notereg.db";
     private static final int VERSAO_BASE_DADOS = 1;
 
     /**
@@ -19,8 +18,9 @@ public class BdMovimentosOpenHelper extends SQLiteOpenHelper {
      * {@link #getReadableDatabase} is called.
      *
      * @param context to use for locating paths to the the database
+
      */
-    public BdMovimentosOpenHelper(@Nullable Context context) {
+    public BdNoteRegOpenHelper(@Nullable Context context) {
         super(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS);
     }
 
@@ -33,9 +33,9 @@ public class BdMovimentosOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        new BdTabelaTipos(db).cria();
-        new BdTabelaServicos(db).cria();
-        new BdTabelaMovimentos(db).cria ();
+        new BdTableTipo(db).cria();
+        new BdTableServico(db).cria();
+        new BdTableMovimento(db).cria();
 
     }
 

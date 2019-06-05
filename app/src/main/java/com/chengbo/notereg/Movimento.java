@@ -6,11 +6,21 @@ import android.database.Cursor;
 public class Movimento {
 
     private long id;
+    private String data;
     private double montante;
-    private String  data;
     private String descricao;
-    private long tipos; //chave estrangeira
-    private long servicos; //chave estrangeira
+    private long fktipo;
+    private long fkservico;
+    private String nomeTipo; // Campo "externo"
+    private String nomeServico; // Campo "externo"
+
+    public String getNomeTipo() {
+        return nomeTipo;
+    }
+
+    public String getNomeServico() {
+        return nomeServico;
+    }
 
     public long getId() {
         return id;
@@ -18,14 +28,6 @@ public class Movimento {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public double getMontante() {
-        return montante;
-    }
-
-    public void setMontante(double montante) {
-        this.montante = montante;
     }
 
     public String getData() {
@@ -36,6 +38,14 @@ public class Movimento {
         this.data = data;
     }
 
+    public double getMontante() {
+        return montante;
+    }
+
+    public void setMontante(double montante) {
+        this.montante = montante;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -44,57 +54,60 @@ public class Movimento {
         this.descricao = descricao;
     }
 
-    public long getTipos() {
-        return tipos;
+    public long getFktipo() {
+        return fktipo;
     }
 
-    public void setTipos(long tipos) {
-        this.tipos = tipos;
+    public void setFktipo(long fktipo) {
+        this.fktipo = fktipo;
     }
 
-    public long getServicos() {
-        return servicos;
+    public long getFkservico() {
+        return fkservico;
     }
 
-    public void setServicos(long servicos) {
-        this.servicos = servicos;
+    public void setFkservico(long fkservico) {
+        this.fkservico = fkservico;
     }
+
+
 
     public ContentValues getContentValues(){
-        ContentValues valores =  new ContentValues ();
 
-        valores.put(BdTabelaMovimentos.CAMPO_MONTANTE, montante);
-        valores.put(BdTabelaMovimentos.CAMPO_DATA, data);
-        valores.put(BdTabelaMovimentos.CAMPO_DESCRICAO, descricao);
-        valores.put(BdTabelaMovimentos.CAMPO_TIPO, tipos);
-        valores.put(BdTabelaMovimentos.CAMPO_SERVICO, servicos);//Todos Atributos sem ID
+        ContentValues values = new ContentValues();
 
-        return valores;
+        values.put(BdTableMovimento.CAMPO_TIPO, fktipo);
+        values.put(BdTableMovimento.CAMPO_SERVICO, fkservico);
+        values.put(BdTableMovimento.CAMPO_DATA, data);
+        values.put(BdTableMovimento.CAMPO_MONTANTE, montante);
+        values.put(BdTableMovimento.CAMPO_DESCRICAO, descricao);
+
+        return values;
     }
 
-    public static  Movimento fromCursor (Cursor cursor){
+    public static Movimento fromCursor (Cursor cursor){
 
-        long id = cursor.getLong(cursor.getColumnIndex(BdTabelaMovimentos._ID));
+        long id = cursor.getLong(cursor.getColumnIndex(BdTableMovimento._ID));
+        long fktipo = cursor.getLong(cursor.getColumnIndex(BdTableMovimento.CAMPO_TIPO));
+        long fkservico = cursor.getLong(cursor.getColumnIndex(BdTableMovimento.CAMPO_SERVICO));
+        String data = cursor.getString(cursor.getColumnIndex(BdTableMovimento.CAMPO_DATA));
+        double montante = cursor.getDouble(cursor.getColumnIndex(BdTableMovimento.CAMPO_MONTANTE));
+        String descricao = cursor.getString(cursor.getColumnIndex(BdTableMovimento.CAMPO_DESCRICAO));
+        //String nomeTipo = cursor.getString(cursor.getColumnIndex(BdTableMovimento.ALIAS_NOME_TIPO));
+        //String nomeServico = cursor.getString(cursor.getColumnIndex(BdTableMovimento.ALIAS_NOME_SERVICO));
 
-        double montante  = cursor.getDouble(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_MONTANTE));
-
-        String data  = cursor.getString(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_DATA));
-
-        String descricao = cursor.getString(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_DESCRICAO));
-
-        long tipos = cursor.getLong(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_TIPO));
-
-        long servico = cursor.getLong(cursor.getColumnIndex(BdTabelaMovimentos.CAMPO_SERVICO));
-
-        Movimento movimento = new Movimento ();
+        Movimento movimento = new Movimento();
 
         movimento.setId(id);
-        movimento.setMontante(montante);
+        movimento.setFktipo(fktipo);
+        movimento.setFkservico(fkservico);
         movimento.setData(data);
+        movimento.setMontante(montante);
         movimento.setDescricao(descricao);
-        movimento.setTipos(tipos);
-        movimento.setServicos(servico);
+       // movimento.nomeTipo = nomeTipo;
+        //movimento.nomeServico = nomeServico;
 
         return movimento;
     }
+
 }

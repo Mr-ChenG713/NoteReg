@@ -6,7 +6,7 @@ import android.database.Cursor;
 public class Tipo {
 
     private long id;
-    private String nome;
+    private  String tiponome;
 
     public long getId() {
         return id;
@@ -16,32 +16,35 @@ public class Tipo {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTiponome() {
+        return tiponome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTiponome(String tiponome) {
+        this.tiponome = tiponome;
     }
 
-    public ContentValues getContenteValues(){
+    public ContentValues getContentValues (){
 
-        ContentValues valores =  new ContentValues();
-
-        valores.put(BdTabelaTipos.CAMPO_NOME, nome);
-
-        return valores;
+        ContentValues values = new ContentValues();
+        values.put(BdTableTipo.CAMPO_NOME, tiponome);
+        return values;
     }
 
-    public static Tipo fromCursor (Cursor cursor){
+    public static Tipo fromCursor(Cursor cursor) {
+
+        long id = cursor.getLong(
+                cursor.getColumnIndex(BdTableTipo._ID)
+        );
+
+        String nome = cursor.getString(
+                cursor.getColumnIndex(BdTableTipo.CAMPO_NOME)
+        );
+
         Tipo tipo = new Tipo();
 
-        long id = cursor.getLong(cursor.getColumnIndex(BdTabelaTipos._ID));
-
-        String nome = cursor.getString(cursor.getColumnIndex(BdTabelaTipos.CAMPO_NOME));
-
         tipo.setId(id);
-        tipo.setNome(nome);
+        tipo.setTiponome(nome);
 
         return tipo;
     }

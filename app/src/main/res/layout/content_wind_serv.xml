@@ -1,94 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".WindServ"
-    tools:showIn="@layout/activity_wind_serv">
+    tools:showIn="@layout/activity_wind_serv" >
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewServicos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginLeft="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_default"
-        android:layout_marginEnd="@dimen/margin_default"
-        android:layout_marginRight="@dimen/margin_default"
-        android:layout_marginBottom="@dimen/margin_default"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:background="@color/colorAccent"
-                android:contentDescription="@string/title_activity_wind_serv"
-                app:srcCompat="@drawable/ic_servs" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_marginTop="20dp"
-                android:gravity="center|center_horizontal|center_vertical"
-                android:text="@string/title_activity_wind_serv"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:fontFamily="casual" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/btn_style"
-                android:onClick="InsSev"
-                android:text="@string/Ins"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_default"
-                android:background="@drawable/btn_style"
-                android:onClick="EDSev"
-                android:text="@string/Del_Edi"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_default"
-                android:background="@drawable/btn_style"
-                android:onClick="Cancel_Button"
-                android:text="@string/Cancel"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent" />
+</FrameLayout>

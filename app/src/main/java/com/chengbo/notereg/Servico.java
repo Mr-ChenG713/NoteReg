@@ -6,7 +6,7 @@ import android.database.Cursor;
 public class Servico {
 
     private long id;
-    private String nome;
+    private  String serviconome;
 
     public long getId() {
         return id;
@@ -16,35 +16,36 @@ public class Servico {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getServiconome() {
+        return serviconome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setServiconome(String serviconome) {
+        this.serviconome = serviconome;
     }
 
-    public ContentValues getContentValues() {
-        ContentValues valores = new ContentValues();
+    public ContentValues getContentValues (){
 
-        valores.put(BdTabelaServicos.CAMPO_NOME, nome);
-
-        return valores;
+        ContentValues values = new ContentValues();
+        values.put(BdTableServico.CAMPO_NOME, serviconome);
+        return values;
     }
 
-    public static Servico fromCursor (Cursor cursor){
+    public static Servico fromCursor(Cursor cursor) {
+
+        long id = cursor.getLong(
+                cursor.getColumnIndex(BdTableTipo._ID)
+        );
+
+        String nome = cursor.getString(
+                cursor.getColumnIndex(BdTableServico.CAMPO_NOME)
+        );
 
         Servico servico = new Servico();
 
-        long id = cursor.getLong(cursor.getColumnIndex(BdTabelaServicos._ID));
-
-        String nome = cursor.getString(cursor.getColumnIndex(BdTabelaServicos.CAMPO_NOME));
-
         servico.setId(id);
-        servico.setNome(nome);
+        servico.setServiconome(nome);
 
         return servico;
-
     }
-
 }

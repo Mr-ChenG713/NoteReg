@@ -6,26 +6,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AdaptadorMovimentos extends RecyclerView.Adapter<AdaptadorMovimentos.ViewHolderMovimento> {
+public class AdaptadorTipo extends RecyclerView.Adapter<AdaptadorTipo.ViewHolderTipo> {
 
     private Cursor cursor;
     private Context context;
 
-    public AdaptadorMovimentos (Context context){
+    public AdaptadorTipo (Context context){
         this.context = context;
     }
 
-    public void setCursor(Cursor cursor){
-        if(this.cursor != cursor){
+    public void setCursor(Cursor cursor) {
+        if (this.cursor != cursor){
             this.cursor = cursor;
             notifyDataSetChanged();
         }
     }
-
 
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
@@ -49,11 +49,10 @@ public class AdaptadorMovimentos extends RecyclerView.Adapter<AdaptadorMovimento
      */
     @NonNull
     @Override
-    public ViewHolderMovimento onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderTipo onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View itemMovimento = LayoutInflater.from(context).inflate(R.layout.item_movimento, parent, false);
-
-        return new ViewHolderMovimento(itemMovimento);
+        View itemTipo = LayoutInflater.from(context).inflate(R.layout.item_tipo, parent, false);
+        return  new ViewHolderTipo(itemTipo);
     }
 
     /**
@@ -77,12 +76,13 @@ public class AdaptadorMovimentos extends RecyclerView.Adapter<AdaptadorMovimento
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderMovimento holder, int position) {
-        cursor.moveToPosition(position);
-        Movimento movimento = Movimento.fromCursor(cursor);
-        holder.setMovimento(movimento);
-    }
+    public void onBindViewHolder(@NonNull ViewHolderTipo holder, int position) {
 
+        cursor.moveToPosition(position);
+        Tipo tipo = Tipo.fromCursor(cursor);
+        holder.setTipo(tipo);
+
+    }
 
     /**
      * Returns the total number of items in the data set held by the adapter.
@@ -91,23 +91,63 @@ public class AdaptadorMovimentos extends RecyclerView.Adapter<AdaptadorMovimento
      */
     @Override
     public int getItemCount() {
-        if (cursor == null) return 0;
 
-        return cursor.getCount();
+        if (cursor == null) return 0;
+        else return cursor.getCount();
     }
 
-    public class ViewHolderMovimento extends RecyclerView.ViewHolder {
+    public Tipo getTipoSelected (){
 
-        private Movimento movimento;
+        if (viewHolderTipoSelected == null) return null;
+        return viewHolderTipoSelected.tipo;
 
-        public ViewHolderMovimento(@NonNull View itemView) {
+    }
 
+    private static ViewHolderTipo viewHolderTipoSelected = null;
+
+    public class ViewHolderTipo extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private TextView textViewTipoNome;
+
+
+        private Tipo tipo;
+
+        public ViewHolderTipo(@NonNull View itemView) {
             super(itemView);
+            textViewTipoNome= itemView.findViewById(R.id.textViewTiposNome);
+            itemView.setOnClickListener(this);
         }
 
-        public void setMovimento(Movimento movimento) {
+        public void setTipo(Tipo tipo) {
 
-            this.movimento = movimento;
+            this.tipo = tipo;
+            textViewTipoNome.setText(tipo.getTiponome());
+
+        }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+
+            if (viewHolderTipoSelected != null) viewHolderTipoSelected.unSelect();
+            viewHolderTipoSelected = this;
+            ((WindTy) context).refreshMenuOptions();
+            select();
+
+        }
+
+        private void select() {
+
+            itemView.setBackgroundResource(R.color.colorItemSelected);
+        }
+
+        private void unSelect() {
+            itemView.setBackgroundResource(android.R.color.white);
+
         }
     }
 }

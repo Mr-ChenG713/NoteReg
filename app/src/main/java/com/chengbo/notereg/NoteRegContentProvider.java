@@ -17,41 +17,40 @@ import androidx.annotation.Nullable;
 public class NoteRegContentProvider extends ContentProvider {
 
     public static final String AUTHORITY = "com.chengbo.notereg";
-    public static final String TIPOS = "tipos";
-    public static final String SERVICOS = "servicos";
-    public static final String MOVIMENTOS = "movimentos";
+    public static final String TIPO = "tipo";
+    public static final String SERVICO = "servico";
+    public static final String MOVIMENTO = "movimento";
 
-    private static final Uri ENDERECO_BASE = Uri.parse("content:// " + AUTHORITY);
-    public static final Uri ENDERECO_TIPOS = Uri.withAppendedPath(ENDERECO_BASE, TIPOS);
-    public static final Uri ENDERECO_SERVICOS = Uri.withAppendedPath(ENDERECO_BASE, SERVICOS);
-    public static final Uri ENDERECO_MOVIMENTOS = Uri.withAppendedPath(ENDERECO_BASE, MOVIMENTOS);
+    private static final Uri ENDERECO_BASE = Uri.parse("content://" + AUTHORITY);
+    public static final Uri ENDERECO_TIPO = Uri.withAppendedPath(ENDERECO_BASE, TIPO);
+    public static final Uri ENDERECO_SERVICO = Uri.withAppendedPath(ENDERECO_BASE, SERVICO);
+    public static final Uri ENDERECO_MOVIMENTO = Uri.withAppendedPath(ENDERECO_BASE, MOVIMENTO);
 
-    public static final int URI_TIPOS = 100;
-    public static final int URI_TIPOS_ESPECIFICO = 101;
-    public static final int URI_SERVICOS = 200;
-    public static final int URI_SERVICOS_ESPECIFICO = 201;
-    public static final int URI_MOVIMENTOS = 300;
-    public static final int URI_MOVIMENTOS_ESPECIFICO = 301;
+    public static final int URI_TIPO = 200;
+    public static final int URI_TIPO_UNICO = 201;
+    public static final int URI_SERVICO = 300;
+    public static final int URI_SERVICO_UNICO = 301;
+    public static final int URI_MOVIMENTO = 400;
+    public static final int URI_MOVIMENTO_UNICO = 401;
 
     public static final String UNICO_ITEM = "vnd.android.cursor.item/";
     public static final String MULTIPLOS_ITEMS = "vnd.android.cursor.dir/";
 
-    private BdMovimentosOpenHelper bdMovimentosOpenHelper;
+    private BdNoteRegOpenHelper bdNoteRegOpenHelper;
 
     private UriMatcher getUriMatcher() {
 
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-        uriMatcher.addURI(AUTHORITY, TIPOS, URI_TIPOS);
-        uriMatcher.addURI(AUTHORITY, TIPOS + " /#", URI_TIPOS_ESPECIFICO);
-        uriMatcher.addURI(AUTHORITY, SERVICOS, URI_SERVICOS);
-        uriMatcher.addURI(AUTHORITY, SERVICOS + " /#", URI_SERVICOS_ESPECIFICO);
-        uriMatcher.addURI(AUTHORITY, MOVIMENTOS, URI_MOVIMENTOS);
-        uriMatcher.addURI(AUTHORITY, MOVIMENTOS + " /#", URI_MOVIMENTOS_ESPECIFICO);
+        uriMatcher.addURI(AUTHORITY, TIPO, URI_TIPO);
+        uriMatcher.addURI(AUTHORITY, TIPO + "/#", URI_TIPO_UNICO);
+        uriMatcher.addURI(AUTHORITY, SERVICO, URI_SERVICO);
+        uriMatcher.addURI(AUTHORITY, SERVICO + "/#", URI_SERVICO_UNICO);
+        uriMatcher.addURI(AUTHORITY, MOVIMENTO, URI_MOVIMENTO);
+        uriMatcher.addURI(AUTHORITY, MOVIMENTO + "/#", URI_MOVIMENTO_UNICO);
 
         return uriMatcher;
     }
-
 
     /**
      * Implement this to initialize your content provider on startup.
@@ -81,8 +80,7 @@ public class NoteRegContentProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
 
-        bdMovimentosOpenHelper = new BdMovimentosOpenHelper(getContext());
-
+        bdNoteRegOpenHelper = new BdNoteRegOpenHelper(getContext());
         return true;
     }
 
@@ -150,30 +148,23 @@ public class NoteRegContentProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
 
-        SQLiteDatabase bd = bdMovimentosOpenHelper.getReadableDatabase();
+        SQLiteDatabase bd = bdNoteRegOpenHelper.getReadableDatabase();
 
         String id = uri.getLastPathSegment();
 
-        switch (getUriMatcher().match(uri)){
-
-            case URI_TIPOS:
-                return new BdTabelaTipos(bd).query(projection, selection, selectionArgs, null, null, sortOrder);
-
-            case URI_TIPOS_ESPECIFICO:
-                return new BdTabelaTipos(bd).query(projection, BdTabelaTipos._ID + "=?", new String[] { id }, null, null, null);
-
-            case URI_SERVICOS:
-                return new BdTabelaServicos(bd).query(projection, selection, selectionArgs, null, null, sortOrder);
-
-            case URI_SERVICOS_ESPECIFICO:
-                return  new BdTabelaServicos(bd).query(projection, BdTabelaServicos._ID + "=?", new String[] { id }, null, null, null);
-
-            case URI_MOVIMENTOS:
-                return new BdTabelaMovimentos(bd).query(projection, selection, selectionArgs, null, null, sortOrder);
-
-            case URI_MOVIMENTOS_ESPECIFICO:
-                return  new BdTabelaMovimentos(bd).query(projection, BdTabelaMovimentos._ID + "=?", new String[] { id }, null, null, null);
-
+        switch (getUriMatcher().match(uri)) {
+            case URI_TIPO:
+                return new BdTableTipo(bd).query(projection, selection, selectionArgs, null, null, sortOrder);
+            case URI_TIPO_UNICO:
+                return  new BdTableTipo(bd).query(projection, BdTableTipo._ID + "=?", new String[] { id }, null, null, null);
+            case URI_SERVICO:
+                return new BdTableServico(bd).query(projection, selection, selectionArgs, null, null, sortOrder);
+            case URI_SERVICO_UNICO:
+                return  new BdTableServico(bd).query(projection, BdTableServico._ID + "=?", new String[] { id }, null, null, null);
+            case URI_MOVIMENTO:
+                return new BdTableMovimento(bd).query(projection, selection, selectionArgs, null, null, sortOrder);
+            case URI_MOVIMENTO_UNICO:
+                return  new BdTableMovimento(bd).query(projection, BdTableMovimento._ID + "=?", new String[] { id }, null, null, null);
             default:
                 throw new UnsupportedOperationException("URI inválida (QUERY): " + uri.toString());
         }
@@ -201,26 +192,19 @@ public class NoteRegContentProvider extends ContentProvider {
     @Override
     public String getType(@NonNull Uri uri) {
 
-        switch (getUriMatcher().match(uri)){
-
-            case URI_TIPOS:
-                return MULTIPLOS_ITEMS + TIPOS;
-
-            case URI_TIPOS_ESPECIFICO:
-                return UNICO_ITEM + TIPOS;
-
-            case URI_SERVICOS:
-                return MULTIPLOS_ITEMS + SERVICOS;
-
-            case URI_SERVICOS_ESPECIFICO:
-                return UNICO_ITEM + SERVICOS;
-
-            case URI_MOVIMENTOS:
-                return MULTIPLOS_ITEMS + MOVIMENTOS;
-
-            case URI_MOVIMENTOS_ESPECIFICO:
-                return UNICO_ITEM + MOVIMENTOS;
-
+        switch (getUriMatcher().match(uri)) {
+            case URI_TIPO:
+                return MULTIPLOS_ITEMS + TIPO;
+            case URI_TIPO_UNICO:
+                return UNICO_ITEM + TIPO;
+            case URI_SERVICO:
+                return MULTIPLOS_ITEMS + SERVICO;
+            case URI_SERVICO_UNICO:
+                return UNICO_ITEM + SERVICO;
+            case URI_MOVIMENTO:
+                return MULTIPLOS_ITEMS + MOVIMENTO;
+            case URI_MOVIMENTO_UNICO:
+                return UNICO_ITEM + MOVIMENTO;
             default:
                 return null;
         }
@@ -243,32 +227,26 @@ public class NoteRegContentProvider extends ContentProvider {
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
 
-        SQLiteDatabase bd = bdMovimentosOpenHelper.getWritableDatabase();
+        SQLiteDatabase bd = bdNoteRegOpenHelper.getWritableDatabase();
 
-        long id = -1;
+        long id = -1 ;
 
-        switch (getUriMatcher().match(uri)){
-
-            case URI_TIPOS:
-                id = new BdTabelaTipos(bd).insert(values);
+        switch (getUriMatcher().match(uri)) {
+            case URI_TIPO:
+                id = new BdTableTipo(bd).insert(values);
                 break;
-
-            case URI_SERVICOS:
-                id = new BdTabelaServicos(bd).insert(values);
+            case URI_SERVICO:
+                id = new BdTableServico(bd).insert(values);
                 break;
-
-            case URI_MOVIMENTOS:
-                id = new BdTabelaMovimentos(bd).insert(values);
+            case URI_MOVIMENTO:
+                id = new BdTableMovimento(bd).insert(values);
                 break;
-
             default:
                 throw new UnsupportedOperationException("URI inválida (INSERT):" + uri.toString());
         }
-
-        if (id == -1){
+        if (id == -1) {
             throw new SQLException("Não foi possível inserir o registo");
         }
-
         return Uri.withAppendedPath(uri, String.valueOf(id));
     }
 
@@ -296,24 +274,21 @@ public class NoteRegContentProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
 
-        SQLiteDatabase bd = bdMovimentosOpenHelper.getWritableDatabase();
+        SQLiteDatabase bd = bdNoteRegOpenHelper.getWritableDatabase();
 
         String id = uri.getLastPathSegment();
 
-        switch (getUriMatcher().match(uri)){
-
-            case URI_TIPOS_ESPECIFICO:
-                return new BdTabelaTipos(bd).delete( BdTabelaTipos._ID + "=?", new String[] {id});
-
-            case URI_SERVICOS_ESPECIFICO:
-                return new BdTabelaServicos(bd).delete(BdTabelaServicos._ID + "=?", new String[] {id});
-
-            case URI_MOVIMENTOS_ESPECIFICO:
-                return new BdTabelaMovimentos(bd).delete(BdTabelaMovimentos._ID + "=?", new String[] {id});
-
+        switch (getUriMatcher().match(uri)) {
+            case URI_TIPO_UNICO:
+                return new BdTableTipo(bd).delete(BdTableTipo._ID + "=?", new String[] {id});
+            case URI_SERVICO_UNICO:
+                return new BdTableServico(bd).delete(BdTableServico._ID + "=?", new String[] {id});
+            case URI_MOVIMENTO_UNICO:
+                return new BdTableMovimento(bd).delete(BdTableMovimento._ID + "=?", new String[] {id});
             default:
                 throw new UnsupportedOperationException("URI inválida (DELETE): " + uri.toString());
         }
+
     }
 
     /**
@@ -337,22 +312,20 @@ public class NoteRegContentProvider extends ContentProvider {
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
 
-        SQLiteDatabase bd = bdMovimentosOpenHelper.getWritableDatabase();
+        SQLiteDatabase bd =  bdNoteRegOpenHelper.getWritableDatabase();
 
-        String id = uri.getLastPathSegment();
+        String  id = uri.getLastPathSegment();
 
         switch (getUriMatcher().match(uri)) {
-            case URI_TIPOS_ESPECIFICO:
-                return new BdTabelaTipos(bd).update(values, BdTabelaTipos._ID + "=?", new String[] {id});
-
-            case URI_SERVICOS_ESPECIFICO:
-                return new BdTabelaServicos(bd).update(values, BdTabelaServicos._ID + "=?", new String[] {id});
-
-            case URI_MOVIMENTOS_ESPECIFICO:
-                return new BdTabelaMovimentos(bd).update(values, BdTabelaMovimentos._ID + "=?", new String[] {id});
-
+            case URI_TIPO_UNICO:
+                return new BdTableTipo(bd).update(values, BdTableTipo._ID + "=?", new String[] {id});
+            case URI_SERVICO_UNICO:
+                return new BdTableServico(bd).update(values, BdTableServico._ID + "=?", new String[] {id});
+            case URI_MOVIMENTO_UNICO:
+                return new BdTableMovimento(bd).update(values, BdTableMovimento._ID + "=?", new String[] {id});
             default:
                 throw new UnsupportedOperationException("URI inválida (UPDATE): " + uri.toString());
         }
+
     }
 }
