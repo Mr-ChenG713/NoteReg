@@ -270,7 +270,7 @@ public class BdNoteRegTest {
     }
 
     private Cursor getServico (BdTableServico tableServico){
-        return  tableServico.query(BdTableServico.TODAS_COLUNAS_TIPOS, null, null, null, null, null);
+        return  tableServico.query(BdTableServico.TODAS_COLUNAS_SERVICOS, null, null, null, null, null);
     }
 
     private Servico getServicoComID (Cursor cursor, long id){

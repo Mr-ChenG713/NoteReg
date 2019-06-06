@@ -11,7 +11,7 @@ public class BdTableServico implements BaseColumns {
 
     public static final  String CAMPO_NOME = "nome";
 
-    public static  final  String[] TODAS_COLUNAS_TIPOS = new String[] {_ID, CAMPO_NOME};
+    public static  final  String[] TODAS_COLUNAS_SERVICOS = new String[] {_ID, CAMPO_NOME};
 
     private SQLiteDatabase db;
 
