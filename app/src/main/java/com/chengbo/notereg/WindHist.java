@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 public class WindHist extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>  {
 
     private static final int ID_CURSOR_LOADER_MOVIMENTO = 0;
+
     private RecyclerView recyclerViewMovimento;
     private AdaptadorMovimento adaptadorMovimento ;
 
@@ -75,6 +78,45 @@ public class WindHist extends AppCompatActivity implements LoaderManager.LoaderC
     protected void onResume() {
         getSupportLoaderManager().restartLoader(ID_CURSOR_LOADER_MOVIMENTO, null, this);
         super.onResume();
+    }
+
+    private Menu menu;
+
+    public void refreshMenuOptions() {
+
+        Movimento movimento = adaptadorMovimento.getMovimentoSelecionado();
+        boolean showEditDelete = (movimento != null);
+        menu.findItem(R.id.action_edit).setVisible(showEditDelete);
+        menu.findItem(R.id.action_delete).setVisible(showEditDelete);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_crud, menu);
+        this.menu = menu;
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.action_add) {
+            Toast.makeText(this, R.string.Ins, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, InsMov.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.action_edit) {
+            Toast.makeText(this, R.string.Upd, Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.action_delete) {
+            Toast.makeText(this, R.string.Del, Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**

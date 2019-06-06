@@ -11,12 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.ViewHolderMovimento> {
+public class AdaptadorServico extends RecyclerView.Adapter<AdaptadorServico.ViewHolderServico>  {
 
     private Cursor cursor;
     private Context context;
 
-    public AdaptadorMovimento (Context context){
+    public AdaptadorServico(Context context) {
+
         this.context = context;
     }
 
@@ -26,6 +27,7 @@ public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.
             notifyDataSetChanged();
         }
     }
+
 
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
@@ -49,10 +51,10 @@ public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.
      */
     @NonNull
     @Override
-    public ViewHolderMovimento onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderServico onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View itemMovimento = LayoutInflater.from(context).inflate(R.layout.item_movimento, parent, false);
-        return new ViewHolderMovimento(itemMovimento);
+        View itemServico = LayoutInflater.from(context).inflate(R.layout.item_servico, parent, false);
+        return  new ViewHolderServico(itemServico);
     }
 
     /**
@@ -76,12 +78,11 @@ public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderMovimento holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderServico holder, int position) {
 
         cursor.moveToPosition(position);
-        Movimento movimento = Movimento.fromCursor(cursor);
-
-        holder.setMovimento(movimento);
+        Servico servico = Servico.fromCursor(cursor);
+        holder.setServico(servico);
 
     }
 
@@ -94,51 +95,34 @@ public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.
     public int getItemCount() {
 
         if (cursor == null) return 0;
-
-        return cursor.getCount();
+        else return cursor.getCount();
     }
 
-    public Movimento getMovimentoSelecionado() {
-
-        if (viewHolderMovimentoSelecionado == null) return null;
-
-        return viewHolderMovimentoSelecionado.movimento;
+    public Servico getServicoSelected() {
+        if (viewHolderServicoSelected == null) return null;
+        return viewHolderServicoSelected.servico;
     }
 
-    private static ViewHolderMovimento viewHolderMovimentoSelecionado = null;
+    private static ViewHolderServico viewHolderServicoSelected = null;
 
-    public class ViewHolderMovimento extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolderServico extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView textViewData;
-        private TextView textViewMontante;
-        private TextView textViewDescricao;
-        private TextView textViewTipo;
-        private TextView textViewServico;
+        private TextView textViewServicoNome;
 
-        private Movimento movimento;
+        private Servico servico;
 
-        public ViewHolderMovimento(@NonNull View itemView) {
-
+        public ViewHolderServico(@NonNull View itemView) {
             super(itemView);
-
-            textViewData = itemView.findViewById(R.id.textViewDataMov);
-            textViewMontante = itemView.findViewById(R.id.textViewMontanteMov);
-            textViewDescricao = itemView.findViewById(R.id.textViewDescricaoMov);
-            textViewTipo = itemView.findViewById(R.id.textViewTipoMov);
-            textViewServico = itemView.findViewById(R.id.textViewServicoMov);
-
+            textViewServicoNome = itemView.findViewById(R.id.textViewServicoNome);
             itemView.setOnClickListener(this);
         }
 
-        public void setMovimento(Movimento movimento) {
+        public void setServico(Servico servico) {
 
-            this.movimento = movimento;
+            this.servico = servico;
 
-            textViewData.setText(movimento.getData());
-            textViewMontante.setText(String.valueOf(movimento.getMontante()));
-            textViewDescricao.setText(movimento.getDescricao());
-            textViewTipo.setText(movimento.getNomeTipo());
-            textViewServico.setText(movimento.getNomeServico());
+            textViewServicoNome.setText(servico.getServiconome());
+
         }
 
         /**
@@ -149,11 +133,11 @@ public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.
         @Override
         public void onClick(View v) {
 
-            if (viewHolderMovimentoSelecionado != null) viewHolderMovimentoSelecionado.unSelect();
-            viewHolderMovimentoSelecionado = this;
-            ((WindHist) context).refreshMenuOptions();
-
+            if (viewHolderServicoSelected != null) viewHolderServicoSelected.unSelect();
+            viewHolderServicoSelected = this;
+            ((WindServ) context).refreshMenuOptions();
             select();
+
         }
 
         private void select() {
@@ -162,7 +146,6 @@ public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.
         }
 
         private void unSelect() {
-
             itemView.setBackgroundResource(android.R.color.white);
 
         }
