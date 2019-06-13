@@ -29,6 +29,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class WindServ extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int ID_CURSOR_LOADER_SERVICO = 0;
+    public static final String ID_SERVICO = "ID_SERVICO";
 
     private RecyclerView recyclerViewServico;
     private AdaptadorServico adaptadorServico;
@@ -66,12 +67,13 @@ public class WindServ extends AppCompatActivity implements LoaderManager.LoaderC
         boolean showEditDelete = (servico != null);
         menu.findItem(R.id.action_edit).setVisible(showEditDelete);
         menu.findItem(R.id.action_delete).setVisible(showEditDelete);
+        menu.findItem(R.id.action_add).setVisible(false);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_operation, menu);
         this.menu = menu;
         return true;
     }
@@ -84,14 +86,28 @@ public class WindServ extends AppCompatActivity implements LoaderManager.LoaderC
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_add) {
+
             Toast.makeText(this, R.string.Ins, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, InsServ.class);
             startActivity(intent);
             return true;
+
         } else if (id == R.id.action_edit) {
+
             Toast.makeText(this, R.string.Upd, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, EditServ.class);
+            intent.putExtra(ID_SERVICO, adaptadorServico.getServicoSelected().getId());
+            startActivity(intent);
+            return true;
+
         } else if (id == R.id.action_delete) {
+
             Toast.makeText(this, R.string.Del, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, DelServ.class);
+            intent.putExtra(ID_SERVICO, adaptadorServico.getServicoSelected().getId());
+            startActivity(intent);
+            return true;
+
         }
 
         return super.onOptionsItemSelected(item);

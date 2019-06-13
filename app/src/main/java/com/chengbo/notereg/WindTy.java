@@ -63,9 +63,13 @@ public class WindTy extends AppCompatActivity implements LoaderManager.LoaderCal
     public void refreshMenuOptions() {
 
         Tipo tipo = adaptadorTipo.getTipoSelected();
+
         boolean showEditDelete = (tipo != null);
+
         menu.findItem(R.id.action_edit).setVisible(showEditDelete);
         menu.findItem(R.id.action_delete).setVisible(showEditDelete);
+        menu.findItem(R.id.action_add).setVisible(false);
+
     }
 
     @Override

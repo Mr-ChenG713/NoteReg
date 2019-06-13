@@ -133,9 +133,14 @@ public class AdaptadorTipo extends RecyclerView.Adapter<AdaptadorTipo.ViewHolder
         @Override
         public void onClick(View v) {
 
-            if (viewHolderTipoSelected != null) viewHolderTipoSelected.unSelect();
+            if (viewHolderTipoSelected != null) {
+                viewHolderTipoSelected.unSelect();
+            }
+
             viewHolderTipoSelected = this;
+
             ((WindTy) context).refreshMenuOptions();
+
             select();
 
         }

@@ -46,25 +46,6 @@ public class InsServ extends AppCompatActivity implements LoaderManager.LoaderCa
 
     }
 
-    public void Save_Button(View view) {
-
-        EditText editTextServ = (EditText) findViewById(R.id.EditServ);
-
-        String message = editTextServ.getText().toString();
-
-        if (message.trim().length() == 0){
-
-            editTextServ.setError(getString(R.string.title_activity_ins_serv));
-            editTextServ.requestFocus();
-            return;
-
-        }
-
-        Toast.makeText(this,(R.string.State_s_Inser), Toast.LENGTH_SHORT).show();
-
-        finish();
-    }
-
     public void Cancel_Button (View view){
 
         finish();
