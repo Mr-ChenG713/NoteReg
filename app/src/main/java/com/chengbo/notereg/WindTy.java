@@ -28,6 +28,7 @@ import android.widget.Toast;
 public class WindTy extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int ID_CURSOR_LOADER_TIPO = 0;
+    public static final String ID_TIPO = "ID_TIPO";
 
     private RecyclerView recyclerViewTipo;
     private AdaptadorTipo adaptadorTipo;
@@ -70,7 +71,7 @@ public class WindTy extends AppCompatActivity implements LoaderManager.LoaderCal
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_crud, menu);
+        getMenuInflater().inflate(R.menu.menu_operation, menu);
         this.menu = menu;
         return true;
     }
@@ -83,14 +84,28 @@ public class WindTy extends AppCompatActivity implements LoaderManager.LoaderCal
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_add) {
+
             Toast.makeText(this, R.string.Ins, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, InsTy.class);
             startActivity(intent);
             return true;
+
         } else if (id == R.id.action_edit) {
+
             Toast.makeText(this, R.string.Upd, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, EditTy.class);
+            intent.putExtra(ID_TIPO, adaptadorTipo.getTipoSelected().getId());
+            startActivity(intent);
+            return true;
+
         } else if (id == R.id.action_delete) {
+
             Toast.makeText(this, R.string.Del, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, DelTy.class);
+            intent.putExtra(ID_TIPO, adaptadorTipo.getTipoSelected().getId());
+            startActivity(intent);
+            return true;
+
         }
 
         return super.onOptionsItemSelected(item);

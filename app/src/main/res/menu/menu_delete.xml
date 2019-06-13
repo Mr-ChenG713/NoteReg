@@ -5,9 +5,9 @@
     tools:context="com.chengbo.notereg.MainActivity">
 
     <item
-        android:id="@+id/action_save"
-        android:icon="@drawable/ic_save"
-        android:title="@string/Save"
+        android:id="@+id/action_delete"
+        android:icon="@drawable/ic_del"
+        android:title="@string/Del"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_cancel"

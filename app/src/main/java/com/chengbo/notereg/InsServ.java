@@ -42,13 +42,13 @@ public class InsServ extends AppCompatActivity implements LoaderManager.LoaderCa
 
         getSupportLoaderManager().initLoader(ID_CURSOR_LOADER_SERVICO, null, this);
 
-        editTextServicoNome = (EditText) findViewById(R.id.InsServ);
+        editTextServicoNome = (EditText) findViewById(R.id.EditServ);
 
     }
 
     public void Save_Button(View view) {
 
-        EditText editTextServ = (EditText) findViewById(R.id.InsServ);
+        EditText editTextServ = (EditText) findViewById(R.id.EditServ);
 
         String message = editTextServ.getText().toString();
 

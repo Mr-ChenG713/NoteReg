@@ -12,24 +12,24 @@
         <activity
             android:name=".EditTy"
             android:label="@string/title_activity_edit_ty"
-            android:parentActivityName=".DelAndUpTy"
+            android:parentActivityName=".DelTy"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.DelAndUpTy" />
+                android:value="com.chengbo.notereg.DelTy" />
         </activity>
         <activity
             android:name=".EditServ"
             android:label="@string/title_activity_edit_serv"
-            android:parentActivityName=".DelAndUpServ"
+            android:parentActivityName=".DelServ"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.DelAndUpServ" />
+                android:value="com.chengbo.notereg.DelServ" />
         </activity>
         <activity
-            android:name=".DelAndUpTy"
-            android:label="@string/title_activity_del_and_up_ty"
+            android:name=".DelTy"
+            android:label="@string/title_activity_del_ty"
             android:parentActivityName=".WindTy"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -37,8 +37,8 @@
                 android:value="com.chengbo.notereg.WindTy" />
         </activity>
         <activity
-            android:name=".DelAndUpServ"
-            android:label="@string/title_activity_del_and_up_serv"
+            android:name=".DelServ"
+            android:label="@string/title_activity_del_serv"
             android:parentActivityName=".WindServ"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

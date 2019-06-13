@@ -2,9 +2,6 @@ package com.chengbo.notereg;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -25,7 +22,7 @@ public class EditServ extends AppCompatActivity {
 
     public void Up_Button(View view) {
 
-        EditText editTextServ = (EditText) findViewById(R.id.InsServ);
+        EditText editTextServ = (EditText) findViewById(R.id.EditServ);
 
         String message = editTextServ.getText().toString();
 

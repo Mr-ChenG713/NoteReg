@@ -64,12 +64,21 @@
     <string name="title_activity_delt_mov">Delete Movement</string>
 
     <string name="Show_Mov_s">Service</string>
-    <string name="title_activity_del_and_up_serv">Delete or Update Service</string>
+    <string name="title_activity_del_serv">Delete Service</string>
     <string name="Show_Mov_t">Type</string>
-    <string name="title_activity_del_and_up_ty">Delete or Update Type</string>
+    <string name="title_activity_del_ty">Delete Type</string>
     <string name="title_activity_edit_serv">Update Sevice</string>
     <string name="title_activity_edit_ty">Update Type</string>
 
+    <string name="erroReadType">Error could not read the type !!!</string>
+    <string name="erroReadServ">Error could not read the service !!!</string>
+    <string name="erroReadMov">Error could not read the movement !!!</string>
+
+    <string name="erro">Erro</string>
+
+    <string name="erroDelType">Error could not delete the type !!!</string>
+    <string name="erroDelServ">Error could not delete the service !!!</string>
+    <string name="erroDElMov">Error could not delete the movement !!!</string>
 
 
 </resources>

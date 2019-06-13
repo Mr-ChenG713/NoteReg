@@ -93,7 +93,7 @@ public class WindHist extends AppCompatActivity implements LoaderManager.LoaderC
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_crud, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         this.menu = menu;
         return true;
     }
