@@ -1,14 +1,11 @@
 package com.chengbo.notereg;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
+
 import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,32 +15,27 @@ import androidx.fragment.app.FragmentManager;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>   {
 
-    private static final int ID_CURSO_LOADER_MOVIMENTO = 0;
+    private static final int ID_CURSOR_LOADER_MOVIMENTO= 0;
 
-    Spinner spinnerTip;
-    Spinner spinnerServ;
-    TextView ShowDat;
-    int mYear, mMonth, mDay;
-    ImageButton AltDat;
-    final int DATE_DIALOG = 1;
+    private Spinner spinnerTipo;
+    private Spinner spinnerServico;
+    private EditText editTextData;
+    private EditText editTextAmout;
+    private EditText editTextNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,118 +44,44 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportLoaderManager().initLoader(ID_CURSO_LOADER_MOVIMENTO, null, this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ShowDat = (EditText) findViewById(R.id.ShowDat);
-        AltDat = (ImageButton) findViewById(R.id.AltDat);
+        getSupportLoaderManager().initLoader(ID_CURSOR_LOADER_MOVIMENTO, null, this);
 
-        AltDat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(DATE_DIALOG);
-            }
-        });
-
-        long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd / M / yyyy");
-        String dateString = sdf.format(date);
-        ShowDat.setText(dateString);
-
-        final Calendar ca = Calendar.getInstance();
-        mYear = ca.get(Calendar.YEAR);
-        mMonth = ca.get(Calendar.MONTH);
-        mDay = ca.get(Calendar.DAY_OF_MONTH);
-
+         spinnerTipo = (Spinner) findViewById(R.id.SpiTip);
+         spinnerServico = (Spinner) findViewById(R.id.SpiServ);
+         editTextData = (EditText) findViewById(R.id.InserData);
+         editTextAmout = (EditText) findViewById(R.id.InserAmt);
+         editTextNote = (EditText)findViewById(R.id.InserNote);
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG:
-                return new DatePickerDialog(this, mdateListener, mYear, mMonth, mDay);
-        }
-        return null;
+    protected void onResume() {
+        getSupportLoaderManager().restartLoader(ID_CURSOR_LOADER_MOVIMENTO, null, this);
+
+        super.onResume();
     }
 
-    public void display (){
-        ShowDat.setText(new StringBuffer().append(mDay).append(" / ")
-                .append(mMonth + 1).append(" / ").append(mYear).append(""));
+    private void showTipoSpinner(Cursor cursorProfile) {
+        SimpleCursorAdapter adaptadorMovimento = new SimpleCursorAdapter(
+                this,
+                android.R.layout.simple_list_item_1,
+                cursorProfile,
+                new String[]{BdTableTipo.CAMPO_NOME},
+                new int[]{android.R.id.text1}
+        );
+        spinnerTipo.setAdapter(adaptadorMovimento);
     }
 
-    private DatePickerDialog.OnDateSetListener mdateListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            display();
-        }
-    };
-
-    public void Save_Button(View view) {
-
-        double valor = 0;
-
-        EditText editTextAmoun = (EditText) findViewById(R.id.InserAmt);
-        EditText editTextData =(EditText) findViewById(R.id.ShowDat);
-
-
-        String message = editTextAmoun.getText().toString();
-        String data = editTextData.getText().toString();
-
-        long selectedItemId = spinnerTip.getSelectedItemId();
-        long selectedItemId2 = spinnerServ.getSelectedItemId();
-
-        if (selectedItemId == 0){
-
-            ((TextView) spinnerTip.getSelectedView()).setError("?");
-            Toast.makeText(this, (R.string.Ins_RegMov_SpiT), Toast.LENGTH_SHORT).show();
-            spinnerTip.requestFocus();
-            return;
-
-        }else  if (selectedItemId2 == 0){
-
-            ((TextView) spinnerServ.getSelectedView()).setError("?");
-            Toast.makeText(this, (R.string.Ins_RegMov_SpiS), Toast.LENGTH_SHORT).show();
-            spinnerServ.requestFocus();
-            return;
-
-        } else if (data.trim().isEmpty()) {
-            editTextData.setError("Please insert a date.");
-            return;
-        }else if (message.trim().length() == 0){
-            editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amo));
-            editTextAmoun.requestFocus();
-            return;
-        } else  if (valor == 0) {
-            editTextAmoun.setError(getString(R.string.Ins_RegMov_erro_amoUP0));
-            editTextAmoun.requestFocus();
-            return;
-        }
-
-        // guardar os dados
-        Movimento movimento = new Movimento();
-
-        movimento.setData(data);
-        movimento.setMontante(valor);
-        movimento.setDescricao(message);
-        movimento.setFktipo(selectedItemId);
-        movimento.setFkservico(selectedItemId2);
-
-        try {
-            getContentResolver().insert(NoteRegContentProvider.ENDERECO_MOVIMENTO, movimento.getContentValues());
-
-            Toast.makeText(this, getString(R.string.State_s_Inser), Toast.LENGTH_SHORT).show();
-            finish();
-        } catch (Exception e) {
-            Snackbar.make(
-                    editTextAmoun,
-                    getString(R.string.State_s_dele),
-                    Snackbar.LENGTH_LONG)
-                    .show();
-
-            e.printStackTrace();
-        }
+    private void showServicoSpinner(Cursor cursorProfile) {
+        SimpleCursorAdapter adaptadorServico = new SimpleCursorAdapter(
+                this,
+                android.R.layout.simple_list_item_2,
+                cursorProfile,
+                new String[]{BdTableServico.CAMPO_NOME},
+                new int[]{android.R.id.text2}
+        );
+        spinnerServico.setAdapter(adaptadorServico);
     }
 
     public void Cancel_Button (View view){
@@ -172,33 +90,81 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
     }
 
     @Override
-    protected void onResume() {
-        getSupportLoaderManager().restartLoader(ID_CURSO_LOADER_MOVIMENTO, null, this);
-
-        super.onResume();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_save, menu);
+        return true;
     }
 
-    private void mostraTipoSpinner(Cursor cursorTipo) {
-        SimpleCursorAdapter adaptadorTipo = new SimpleCursorAdapter(
-                this,
-                android.R.layout.simple_list_item_1,
-                cursorTipo,
-                new String[]{BdTableTipo.CAMPO_NOME},
-                new int[]{android.R.id.text1}
-        );
-        spinnerTip.setAdapter(adaptadorTipo);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.action_save) {
+            save();
+            return true;
+        } else if (id == R.id.action_cancel) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
-    private void mostraServicoSpinner(Cursor cursorServico) {
-        SimpleCursorAdapter adaptadorServico = new SimpleCursorAdapter(
-                this,
-                android.R.layout.simple_list_item_2,
-                cursorServico,
-                new String[]{BdTableServico.CAMPO_NOME},
-                new int[]{android.R.id.text2}
-        );
-        spinnerServ.setAdapter(adaptadorServico);
+    private void save() {
+        String conteudoData = editTextData.getText().toString();
+
+        if (conteudoData.trim().isEmpty()) {
+            editTextData.setError("Please insert a date !!!");
+            editTextData.requestFocus();
+            return;
+        }
+
+        double valor = 0;
+        String conteudoAmt = editTextAmout.getText().toString();
+        valor = Double.parseDouble(conteudoAmt);
+
+        if (conteudoAmt.trim().length() == 0){
+            editTextAmout.setError(getString(R.string.Ins_RegMov_erro_amo));
+            editTextAmout.requestFocus();
+            return;
+        } else  if (valor == 0) {
+            editTextAmout.setError(getString(R.string.Ins_RegMov_erro_amoUP0));
+            editTextAmout.requestFocus();
+            return;
+        }
+
+        String conteudoNote = editTextNote.getText().toString();
+
+        long idTipo = spinnerTipo.getSelectedItemId();
+        long idServico = spinnerServico.getSelectedItemId();
+
+        // Save the data
+        Movimento movimento = new Movimento();
+
+        movimento.setTipo(idTipo);
+        movimento.setServico(idServico);
+        movimento.setData(conteudoData);
+        movimento.setMontante(valor);
+        movimento.setDescricao(conteudoNote);
+
+        try {
+            getContentResolver().insert(NoteRegContentProvider.ENDERECO_MOVIMENTO, movimento.getContentValues());
+
+            Toast.makeText(this, (R.string.State_s_Inser), Toast.LENGTH_SHORT).show();
+            finish();
+        } catch (Exception e) {
+            Snackbar.make(editTextData, "Error while saving!", Snackbar.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
+
 
 
     /**
@@ -216,7 +182,6 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
 
         androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, NoteRegContentProvider.ENDERECO_TIPO, BdTableTipo.TODAS_COLUNAS_TIPOS, null, null, BdTableTipo.CAMPO_NOME
         );
-
         return cursorLoader;
     }
 
@@ -264,6 +229,9 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
 
+        showServicoSpinner(data);
+        showTipoSpinner(data);
+
     }
 
     /**
@@ -277,6 +245,9 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
      */
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
+        showTipoSpinner(null);
+        showServicoSpinner(null);
 
     }
 }

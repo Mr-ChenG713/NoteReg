@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".DeltMov"
-    tools:showIn="@layout/activity_delt_mov">
+    tools:context=".DelMov"
+    tools:showIn="@layout/activity_del_mov">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +27,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/Show_Mov_t"
-                    android:text="Ganho"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="25sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -42,7 +41,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/Show_Mov_s"
-                    android:text="Comprars"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="25sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -57,7 +55,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/Ins_RegMov_Dat"
-                    android:text="28/4/2019"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="25sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +69,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/Ins_RegMov_Amo"
-                    android:text="5.00"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="25sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -90,17 +86,6 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="25sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:background="@drawable/btn_style"
-                android:onClick="Delete_Button"
-                android:text="@string/Del"
-                android:textColor="@drawable/txt_btn_style"
-                tools:text="@string/Del" />
 
             <Button
                 android:id="@+id/button13"

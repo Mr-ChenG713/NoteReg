@@ -151,7 +151,7 @@ public class AdaptadorMovimento extends RecyclerView.Adapter<AdaptadorMovimento.
 
             if (viewHolderMovimentoSelecionado != null) viewHolderMovimentoSelecionado.unSelect();
             viewHolderMovimentoSelecionado = this;
-            ((WindHist) context).refreshMenuOptions();
+            ((WindMov) context).refreshMenuOptions();
 
             select();
         }

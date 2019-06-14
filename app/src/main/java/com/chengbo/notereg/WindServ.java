@@ -127,7 +127,9 @@ public class WindServ extends AppCompatActivity implements LoaderManager.LoaderC
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
 
-        CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, NoteRegContentProvider.ENDERECO_SERVICO, BdTableServico.TODAS_COLUNAS_SERVICOS, null, null, BdTableServico.CAMPO_NOME);
+        CursorLoader cursorLoader = new CursorLoader(this, NoteRegContentProvider.ENDERECO_SERVICO, BdTableServico.TODAS_COLUNAS_SERVICOS, null, null, BdTableServico.CAMPO_NOME
+        );
+
         return cursorLoader;
     }
 

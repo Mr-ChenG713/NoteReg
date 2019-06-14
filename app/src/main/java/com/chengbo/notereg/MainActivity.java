@@ -29,7 +29,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    int selectedindex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,77 +37,28 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        CircleMenu circleMenu = findViewById(R.id.circlemenu);
+    }
 
-        circleMenu.setMainMenu(Color.parseColor("#CDCDCD"),R.drawable.ic_home, R.drawable.ic_exit)
-                .addSubMenu(Color.parseColor("#CD0000"), R.drawable.ic_movim)
-                .addSubMenu(Color.parseColor("#00CD00"), R.drawable.ic_tips)
-                .addSubMenu(Color.parseColor("#0000CD"), R.drawable.ic_graf)
-                .addSubMenu(Color.parseColor("#0000CD"), R.drawable.ic_hist)
-                .addSubMenu(Color.parseColor("#0000CD"), R.drawable.ic_servs);
+    public void OpenMovimento(View view) {
 
-        circleMenu.setOnMenuSelectedListener(new OnMenuSelectedListener() {
-            @Override
-            public void onMenuSelected(int i) {
-                switch (i) {
-                    case 0 :
-                        selectedindex = 1;
-                        break;
-                    case 1 :
-                        selectedindex = 2;
-                        break;
-                    case 2 :
-                        selectedindex = 3;
-                        break;
-                    case 3 :
-                        selectedindex = 4;
-                        break;
-                    case 4 :
-                        selectedindex = 5;
-                        break;
-                }
-            }
-        });
+        Intent intentMov = new Intent(MainActivity.this, WindMov.class);
+        Toast.makeText(MainActivity.this, (R.string.WindMov_click_noti), Toast.LENGTH_SHORT).show();
+        startActivity(intentMov);
+    }
 
-        circleMenu.setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
-            @Override
-            public void onMenuOpened() {
-                selectedindex = 0;
-            }
+    public void OpenTipo(View view) {
 
-            @Override
-            public void onMenuClosed() {
+        Intent intentTip = new Intent(MainActivity.this, WindTy.class);
+        Toast.makeText(MainActivity.this, (R.string.WindTip_click_noti), Toast.LENGTH_SHORT).show();
+        startActivity(intentTip);
 
-                switch (selectedindex){
-                    case 1:
-                        Intent intentMov = new Intent(MainActivity.this, WindMov.class);
-                        Toast.makeText(MainActivity.this, (R.string.WindMov_click_noti), Toast.LENGTH_SHORT).show();
-                        startActivity(intentMov);
-                        break;
-                    case 2:
-                        Intent intentTip = new Intent(MainActivity.this, WindTy.class);
-                        Toast.makeText(MainActivity.this, (R.string.WindTip_click_noti), Toast.LENGTH_SHORT).show();
-                        startActivity(intentTip);
-                        break;
-                    case 3:
-                        Intent intentGra = new Intent(MainActivity.this, WindGraf.class);
-                        Toast.makeText(MainActivity.this, (R.string.WindGraf_click_noti), Toast.LENGTH_SHORT).show();
-                        startActivity(intentGra);
-                        break;
-                    case 4:
-                        Intent intentHist = new Intent(MainActivity.this, WindHist.class);
-                        Toast.makeText(MainActivity.this, (R.string.WindHist_click_noti), Toast.LENGTH_SHORT).show();
-                        startActivity(intentHist);
-                        break;
-                    case 5:
+    }
 
-                        Intent intentServ = new Intent(MainActivity.this, WindServ.class);
-                        Toast.makeText(MainActivity.this, (R.string.WindServ_click_noti), Toast.LENGTH_SHORT).show();
-                        startActivity(intentServ);
-                        break;
-                }
-            }
-        });
+    public void OpenServico(View view) {
+
+        Intent intentServ = new Intent(MainActivity.this, WindServ.class);
+        Toast.makeText(MainActivity.this, (R.string.WindServ_click_noti), Toast.LENGTH_SHORT).show();
+        startActivity(intentServ);
 
     }
 

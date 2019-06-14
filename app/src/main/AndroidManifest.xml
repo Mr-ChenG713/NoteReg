@@ -12,20 +12,20 @@
         <activity
             android:name=".EditTy"
             android:label="@string/title_activity_edit_ty"
-            android:parentActivityName=".DelTy"
+            android:parentActivityName=".WindTy"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.DelTy" />
+                android:value="com.chengbo.notereg.WindTy" />
         </activity>
         <activity
             android:name=".EditServ"
             android:label="@string/title_activity_edit_serv"
-            android:parentActivityName=".DelServ"
+            android:parentActivityName=".WindServ"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.DelServ" />
+                android:value="com.chengbo.notereg.WindServ" />
         </activity>
         <activity
             android:name=".DelTy"
@@ -46,22 +46,22 @@
                 android:value="com.chengbo.notereg.WindServ" />
         </activity>
         <activity
-            android:name=".DeltMov"
+            android:name=".DelMov"
             android:label="@string/title_activity_delt_mov"
-            android:parentActivityName=".WindGraf"
+            android:parentActivityName=".WindMov"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.WindGraf" />
+                android:value="com.chengbo.notereg.WindMov" />
         </activity>
         <activity
-            android:name=".UpdtMov"
+            android:name=".EditMov"
             android:label="@string/title_activity_updt_mov"
-            android:parentActivityName=".WindHist"
+            android:parentActivityName=".WindMov"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.WindHist" />
+                android:value="com.chengbo.notereg.WindMov" />
         </activity>
         <activity
             android:name=".InsTy"
@@ -89,24 +89,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.chengbo.notereg.WindMov" />
-        </activity>
-        <activity
-            android:name=".WindHist"
-            android:label="@string/title_activity_wind_hist"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.MainActivity" />
-        </activity>
-        <activity
-            android:name=".WindGraf"
-            android:label="@string/title_activity_wind_graf"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chengbo.notereg.MainActivity" />
         </activity>
         <activity
             android:name=".WindServ"

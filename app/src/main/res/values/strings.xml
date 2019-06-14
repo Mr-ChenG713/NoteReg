@@ -17,9 +17,6 @@
     <string name="WindMov_click_noti">Clicked Movements</string>
     <string name="WindTip_click_noti">Clicked Types</string>
     <string name="WindServ_click_noti">Clicked Services</string>
-    <string name="WindHist_click_noti">Clicked History</string>
-    <string name="WindGraf_click_noti">Clicked Graph</string>
-
 
     <string name="Ins_RegMov_Dat">Date</string>
     <string name="Ins_RegMov_Amo">Amount</string>
@@ -30,32 +27,9 @@
     <string name="Ins_RegMov_erro_amo">Insert Amount</string>
     <string name="Ins_RegMov_erro_amoUP0">Enter a value greater than 0</string>
 
-    <string-array name="Type">
-        <item>Select Type</item>
-        <item>Gain</item>
-        <item>Expense</item>
-    </string-array>
-
-    <string-array name="Service">
-        <item>Select Service</item>
-        <item>Salary</item>
-        <item>Premium</item>
-        <item>Deposit</item>
-        <item>Food</item>
-        <item>Car</item>
-        <item>House</item>
-        <item>Shopping</item>
-        <item>Telecommunications</item>
-        <item>Entertainment</item>
-        <item>Health Care</item>
-        <item>Transport</item>
-    </string-array>
-
     <string name="title_activity_wind_mov">Movements</string>
     <string name="title_activity_wind_ty">Types</string>
     <string name="title_activity_wind_serv">Services</string>
-    <string name="title_activity_wind_graf">Graphics</string>
-    <string name="title_activity_wind_hist">History</string>
     <string name="title_activity_ins_mov">Insert Movement</string>
     <string name="title_activity_ins_serv">Insert Sevice</string>
     <string name="title_activity_ins_ty">Insert Type</string>
@@ -79,6 +53,8 @@
     <string name="erroDelType">Error could not delete the type !!!</string>
     <string name="erroDelServ">Error could not delete the service !!!</string>
     <string name="erroDElMov">Error could not delete the movement !!!</string>
+
+    <string name="FormatData">Insert Date Format dd/mm/yyyy</string>
 
 
 </resources>

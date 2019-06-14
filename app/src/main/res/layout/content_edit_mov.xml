@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".UpdtMov"
-    tools:showIn="@layout/activity_updt_mov">
+    tools:context=".EditMov"
+    tools:showIn="@layout/activity_edit_mov">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,51 +47,23 @@
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown" />
 
-            <LinearLayout
-                android:id="@+id/DateOpE"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/margin_default"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/margin_default"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_default"
-                    android:layout_marginEnd="@dimen/margin_default"
-                    android:gravity="center"
-                    android:text="@string/Ins_RegMov_Dat"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/InserData"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:hint="@string/Ins_RegMov_Dat"
+                    android:inputType="date"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:fontFamily="casual" />
-
-                <TextView
-                    android:id="@+id/ShowDatE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_default"
-                    android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginEnd="50dp"
-                    android:layout_weight="1"
-                    android:background="@android:drawable/alert_light_frame"
-                    android:gravity="center_horizontal"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:fontFamily="casual" />
-
-                <ImageButton
-                    android:id="@+id/AltDatE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_default"
-                    android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/ic_calaenda" />
-            </LinearLayout>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -138,21 +110,6 @@
                     android:hint="@string/Ins_RegMov_opc"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/button14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_default"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/margin_default"
-                android:background="@drawable/btn_style"
-                android:onClick="Update_Button"
-                android:text="@string/Upd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style"
-                android:textSize="30sp"
-                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button15"

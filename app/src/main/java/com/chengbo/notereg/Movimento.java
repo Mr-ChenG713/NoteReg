@@ -9,8 +9,8 @@ public class Movimento {
     private String data;
     private double montante;
     private String descricao;
-    private long fktipo;
-    private long fkservico;
+    private long tipo;
+    private long servico;
     private String nomeTipo; // Campo "externo"
     private String nomeServico; // Campo "externo"
 
@@ -54,30 +54,28 @@ public class Movimento {
         this.descricao = descricao;
     }
 
-    public long getFktipo() {
-        return fktipo;
+    public long getTipo() {
+        return tipo;
     }
 
-    public void setFktipo(long fktipo) {
-        this.fktipo = fktipo;
+    public void setTipo(long tipo) {
+        this.tipo = tipo;
     }
 
-    public long getFkservico() {
-        return fkservico;
+    public long getServico() {
+        return servico;
     }
 
-    public void setFkservico(long fkservico) {
-        this.fkservico = fkservico;
+    public void setServico(long servico) {
+        this.servico = servico;
     }
-
-
 
     public ContentValues getContentValues(){
 
         ContentValues values = new ContentValues();
 
-        values.put(BdTableMovimento.CAMPO_TIPO, fktipo);
-        values.put(BdTableMovimento.CAMPO_SERVICO, fkservico);
+        values.put(BdTableMovimento.CAMPO_TIPO, tipo);
+        values.put(BdTableMovimento.CAMPO_SERVICO, servico);
         values.put(BdTableMovimento.CAMPO_DATA, data);
         values.put(BdTableMovimento.CAMPO_MONTANTE, montante);
         values.put(BdTableMovimento.CAMPO_DESCRICAO, descricao);
@@ -88,24 +86,25 @@ public class Movimento {
     public static Movimento fromCursor (Cursor cursor){
 
         long id = cursor.getLong(cursor.getColumnIndex(BdTableMovimento._ID));
-        long fktipo = cursor.getLong(cursor.getColumnIndex(BdTableMovimento.CAMPO_TIPO));
-        long fkservico = cursor.getLong(cursor.getColumnIndex(BdTableMovimento.CAMPO_SERVICO));
+        long tipo = cursor.getLong(cursor.getColumnIndex(BdTableMovimento.CAMPO_TIPO));
+        long servico = cursor.getLong(cursor.getColumnIndex(BdTableMovimento.CAMPO_SERVICO));
         String data = cursor.getString(cursor.getColumnIndex(BdTableMovimento.CAMPO_DATA));
         double montante = cursor.getDouble(cursor.getColumnIndex(BdTableMovimento.CAMPO_MONTANTE));
         String descricao = cursor.getString(cursor.getColumnIndex(BdTableMovimento.CAMPO_DESCRICAO));
-        //String nomeTipo = cursor.getString(cursor.getColumnIndex(BdTableMovimento.ALIAS_NOME_TIPO));
-        //String nomeServico = cursor.getString(cursor.getColumnIndex(BdTableMovimento.ALIAS_NOME_SERVICO));
+        String nomeTipo = cursor.getString(cursor.getColumnIndex(BdTableMovimento.ALIAS_NOME_TIPO));
+        String nomeServico = cursor.getString(cursor.getColumnIndex(BdTableMovimento.ALIAS_NOME_SERVICO));
+
 
         Movimento movimento = new Movimento();
 
         movimento.setId(id);
-        movimento.setFktipo(fktipo);
-        movimento.setFkservico(fkservico);
+        movimento.setTipo(tipo);
+        movimento.setServico(servico);
         movimento.setData(data);
         movimento.setMontante(montante);
         movimento.setDescricao(descricao);
-       // movimento.nomeTipo = nomeTipo;
-        //movimento.nomeServico = nomeServico;
+        movimento.nomeTipo = nomeTipo;
+        movimento.nomeServico = nomeServico;
 
         return movimento;
     }
