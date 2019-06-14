@@ -1,12 +1,11 @@
 # NoteReg
 Project Android
 
-Esta aplicação tem como objetivo registar os ganhos e os gastos que foram efectuandos durante o mês, e no final de mês indica o montante que sobrou/gastou.
+Esta aplicação tem como objetivo registar os ganhos e os gastos que foram efectuandos durante o mês.
 
 A aplicação tem as seguintes funcionalidades:
  - Selecionar o tipo se foi ganho ou gasto
  - Registar as despesas/ganhos
- - Calcular o gasto total / ganho total / montante que sobra
  
 Para a base de dados serão utilizado as seguintes tabelas:
  - Tabela de tipo
