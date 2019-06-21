@@ -67,7 +67,7 @@ public class WindServ extends AppCompatActivity implements LoaderManager.LoaderC
         boolean showEditDelete = (servico != null);
         menu.findItem(R.id.action_edit).setVisible(showEditDelete);
         menu.findItem(R.id.action_delete).setVisible(showEditDelete);
-        menu.findItem(R.id.action_add).setVisible(false);
+        //menu.findItem(R.id.action_add).setVisible(false);
     }
 
     @Override

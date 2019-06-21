@@ -64,7 +64,7 @@ public class WindMov extends AppCompatActivity implements LoaderManager.LoaderCa
 
         menu.findItem(R.id.action_edit).setVisible(mostraAlterarEliminar);
         menu.findItem(R.id.action_delete).setVisible(mostraAlterarEliminar);
-        menu.findItem(R.id.action_add).setVisible(false);
+        //menu.findItem(R.id.action_add).setVisible(false);
     }
 
     @Override
@@ -173,7 +173,7 @@ public class WindMov extends AppCompatActivity implements LoaderManager.LoaderCa
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
 
-        Snackbar.make(recyclerViewMovimentos, "Dados Exixtentes:  " + data.getCount(), Snackbar.LENGTH_INDEFINITE).show();
+        Snackbar.make(recyclerViewMovimentos, "Dados Existentes:  " + data.getCount(), Snackbar.LENGTH_INDEFINITE).show();
         adaptadorMovimento.setCursor(data);
 
     }

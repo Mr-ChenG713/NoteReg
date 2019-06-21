@@ -67,7 +67,7 @@ public class WindTy extends AppCompatActivity implements LoaderManager.LoaderCal
 
         menu.findItem(R.id.action_edit).setVisible(showEditDelete);
         menu.findItem(R.id.action_delete).setVisible(showEditDelete);
-        menu.findItem(R.id.action_add).setVisible(false);
+        //menu.findItem(R.id.action_add).setVisible(false);
 
     }
 

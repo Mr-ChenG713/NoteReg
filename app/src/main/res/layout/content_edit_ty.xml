@@ -29,17 +29,6 @@
                     android:hint="@string/title_activity_ins_ty" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/button25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:onClick="Cancel_Button"
-                android:text="@string/Cancel"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style"
-                android:background="@drawable/btn_style"/>
-
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -170,8 +170,8 @@ public class BdNoteRegTest {
         assertEquals(data, movimento.getData());
         assertEquals(montante, movimento.getMontante(), 0.01);
         assertEquals(descricao, movimento.getDescricao());
-        assertEquals(idGanho, movimento.getFktipo());
-        assertEquals(idSalario, movimento.getFkservico());
+        assertEquals(idGanho, movimento.getTipo());
+        assertEquals(idSalario, movimento.getServico());
 
         data = "01/07/2019";
         montante = 7.95;
@@ -185,8 +185,8 @@ public class BdNoteRegTest {
         assertEquals(data, movimento.getData());
         assertEquals(montante, movimento.getMontante(), 0.01);
         assertEquals(descricao, movimento.getDescricao());
-        assertEquals(idDespesa, movimento.getFktipo());
-        assertEquals(idAlimentacao, movimento.getFkservico());
+        assertEquals(idDespesa, movimento.getTipo());
+        assertEquals(idAlimentacao, movimento.getServico());
 
         id = criaMovimento(tableMovimento, "02/07/2019", 0.01, "TESTE DELETE", idGanho, idAlimentacao);
         cursorMovimento = getMovimento(tableMovimento);
@@ -201,8 +201,8 @@ public class BdNoteRegTest {
         movimento.setData(data);
         movimento.setMontante(montante);
         movimento.setDescricao(descricao);
-        movimento.setFktipo(idGanho);
-        movimento.setFkservico(idSalario);
+        movimento.setTipo(idGanho);
+        movimento.setServico(idSalario);
 
         tableMovimento.update(movimento.getContentValues(), BdTableMovimento._ID + "=?", new String[]{String.valueOf(id)});
         cursorMovimento = getMovimento(tableMovimento);
@@ -211,8 +211,8 @@ public class BdNoteRegTest {
         assertEquals(data, movimento.getData());
         assertEquals(montante, movimento.getMontante(), 0.01);
         assertEquals(descricao, movimento.getDescricao());
-        assertEquals(idGanho, movimento.getFktipo());
-        assertEquals(idSalario, movimento.getFkservico());
+        assertEquals(idGanho, movimento.getTipo());
+        assertEquals(idSalario, movimento.getServico());
 
         //Teste read/delete Movimentos
         tableMovimento.delete(BdTableMovimento._ID + "=?", new String[]{String.valueOf(id)});
@@ -298,8 +298,8 @@ public class BdNoteRegTest {
         movimento.setData(data);
         movimento.setMontante(montante);
         movimento.setDescricao(descricao);
-        movimento.setFktipo(fktipo);
-        movimento.setFkservico(fkservico);
+        movimento.setTipo(fktipo);
+        movimento.setServico(fkservico);
 
         long id =  tableMovimento.insert(movimento.getContentValues());
         assertNotEquals(-1, id);

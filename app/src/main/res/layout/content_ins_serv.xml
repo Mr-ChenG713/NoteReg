@@ -43,20 +43,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_default"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/margin_default"
-                android:background="@drawable/btn_style"
-                android:onClick="Cancel_Button"
-                android:text="@string/Cancel"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@drawable/txt_btn_style"
-                android:textSize="30sp"
-                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 

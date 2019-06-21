@@ -29,7 +29,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>   {
 
-    private static final int ID_CURSOR_LOADER_MOVIMENTO= 0;
+    private static final int ID_CURSOR_LOADER_TIPO= 0;
+    private static final int ID_CURSOR_LOADER_SERVICO= 1;
 
     private Spinner spinnerTipo;
     private Spinner spinnerServico;
@@ -46,7 +47,8 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportLoaderManager().initLoader(ID_CURSOR_LOADER_MOVIMENTO, null, this);
+        getSupportLoaderManager().initLoader(ID_CURSOR_LOADER_TIPO, null, this);
+        getSupportLoaderManager().initLoader(ID_CURSOR_LOADER_SERVICO, null, this);
 
          spinnerTipo = (Spinner) findViewById(R.id.SpiTip);
          spinnerServico = (Spinner) findViewById(R.id.SpiServ);
@@ -57,29 +59,30 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
 
     @Override
     protected void onResume() {
-        getSupportLoaderManager().restartLoader(ID_CURSOR_LOADER_MOVIMENTO, null, this);
+        getSupportLoaderManager().restartLoader(ID_CURSOR_LOADER_TIPO, null, this);
+        getSupportLoaderManager().restartLoader(ID_CURSOR_LOADER_SERVICO, null, this);
 
         super.onResume();
     }
 
-    private void showTipoSpinner(Cursor cursorProfile) {
-        SimpleCursorAdapter adaptadorMovimento = new SimpleCursorAdapter(
+    private void showTipoSpinner(Cursor cursorTipo) {
+        SimpleCursorAdapter adaptadorTipo = new SimpleCursorAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
-                cursorProfile,
+                cursorTipo,
                 new String[]{BdTableTipo.CAMPO_NOME},
                 new int[]{android.R.id.text1}
         );
-        spinnerTipo.setAdapter(adaptadorMovimento);
+        spinnerTipo.setAdapter(adaptadorTipo);
     }
 
-    private void showServicoSpinner(Cursor cursorProfile) {
+    private void showServicoSpinner(Cursor cursorServico) {
         SimpleCursorAdapter adaptadorServico = new SimpleCursorAdapter(
                 this,
-                android.R.layout.simple_list_item_2,
-                cursorProfile,
+                android.R.layout.simple_list_item_1,
+                cursorServico,
                 new String[]{BdTableServico.CAMPO_NOME},
-                new int[]{android.R.id.text2}
+                new int[]{android.R.id.text1}
         );
         spinnerServico.setAdapter(adaptadorServico);
     }
@@ -180,9 +183,20 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
 
-        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, NoteRegContentProvider.ENDERECO_TIPO, BdTableTipo.TODAS_COLUNAS_TIPOS, null, null, BdTableTipo.CAMPO_NOME
-        );
-        return cursorLoader;
+        if (id == ID_CURSOR_LOADER_TIPO){
+
+            androidx.loader.content.CursorLoader cursorLoaderTipo = new androidx.loader.content.CursorLoader(this, NoteRegContentProvider.ENDERECO_TIPO, BdTableTipo.TODAS_COLUNAS_TIPOS, null, null, BdTableTipo.CAMPO_NOME
+            );
+            return cursorLoaderTipo;
+
+        } else if (id == ID_CURSOR_LOADER_SERVICO){
+
+            androidx.loader.content.CursorLoader cursorLoaderServico = new androidx.loader.content.CursorLoader(this, NoteRegContentProvider.ENDERECO_SERVICO, BdTableServico.TODAS_COLUNAS_SERVICOS, null, null, BdTableServico.CAMPO_NOME
+            );
+            return cursorLoaderServico;
+        }
+
+        return null;
     }
 
     /**
@@ -229,8 +243,14 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
 
-        showServicoSpinner(data);
-        showTipoSpinner(data);
+        int id = loader.getId();
+        if (id == ID_CURSOR_LOADER_TIPO){
+
+            showTipoSpinner(data);
+        }else if (id == ID_CURSOR_LOADER_SERVICO) {
+
+            showServicoSpinner(data);
+        }
 
     }
 
@@ -246,8 +266,16 @@ public class InsMov extends AppCompatActivity implements LoaderManager.LoaderCal
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
-        showTipoSpinner(null);
-        showServicoSpinner(null);
+        int id = loader.getId();
+
+        if (id == ID_CURSOR_LOADER_TIPO){
+
+            showTipoSpinner(null);
+
+        }else if (id == ID_CURSOR_LOADER_SERVICO) {
+
+            showServicoSpinner(null);
+        }
 
     }
 }

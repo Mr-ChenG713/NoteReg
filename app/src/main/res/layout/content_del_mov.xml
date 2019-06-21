@@ -87,17 +87,6 @@
                     android:textSize="25sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/button13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:background="@drawable/btn_style"
-                android:onClick="Cancel_Button"
-                android:text="@string/Cancel"
-                android:textColor="@drawable/txt_btn_style"
-                tools:text="@string/Cancel" />
-
         </LinearLayout>
     </ScrollView>
 
