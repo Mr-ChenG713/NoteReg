@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,25 +7,31 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".DelTy"
-    tools:showIn="@layout/activity_del_ty">
+    tools:showIn="@layout/activity_del_ty" >
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/title_activity_wind_ty"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/DelTypeShow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp">
-
-        <TextView
-            android:id="@+id/DelTypeShow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/title_activity_wind_ty"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-</LinearLayout>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
